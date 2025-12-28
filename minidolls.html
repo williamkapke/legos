@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO Friends Minidolls</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #fff;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        height: 100vh;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        background: #fafafa;
+        border-right: 1px solid #e0e0e0;
+        overflow-y: auto;
+      }
+      .sidebar-header {
+        padding: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 0;
+        background: #fafafa;
+        z-index: 10;
+      }
+      .sidebar-header h1 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+      }
+      .sidebar-header input {
+        width: 100%;
+        margin-top: 12px;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+      .sidebar-header input:focus {
+        outline: none;
+        border-color: #999;
+      }
+      .name-list {
+        list-style: none;
+      }
+      .name-item {
+        padding: 14px 20px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .name-item:hover {
+        background: #f0f0f0;
+      }
+      .name-item.active {
+        background: #e91e63;
+        color: white;
+      }
+      .name-item h3 {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .name-item .count {
+        font-size: 12px;
+        opacity: 0.7;
+      }
+
+      /* Main Content */
+      .main {
+        background: #f5f5f5;
+        overflow-y: auto;
+        overflow-x: visible;
+        padding: 30px;
+        padding-bottom: 330px;
+      }
+      .main-header {
+        margin-bottom: 24px;
+      }
+      .main-header h2 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 4px;
+      }
+      .main-header p {
+        font-size: 14px;
+        color: #888;
+      }
+
+      /* Grid of minidolls */
+      .minidoll-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+      .minidoll-card {
+        position: relative;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s, box-shadow 0.2s;
+        overflow: hidden;
+        background: #e0e0e0
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2' ry='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpolyline points='21 15 16 10 5 21'/%3E%3C/svg%3E")
+          center center no-repeat;
+        aspect-ratio: 1;
+      }
+      .minidoll-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      }
+      .minidoll-card:hover .minidoll-card-overlay {
+        background: transparent;
+      }
+      .minidoll-card:hover .minidoll-card-overlay h4 {
+        opacity: 0;
+      }
+      .minidoll-card > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .minidoll-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .minidoll-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 25%, transparent 50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 14px;
+        pointer-events: none;
+        transition: background 0.2s;
+      }
+      .minidoll-card-overlay h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: white;
+        line-height: 1.3;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        order: 2;
+        transition: opacity 0.2s;
+      }
+      .minidoll-card-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+        order: 1;
+      }
+      .minidoll-card-meta span {
+        font-size: 11px;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 4px 10px;
+        border-radius: 12px;
+        backdrop-filter: blur(4px);
+      }
+      .minidoll-card-meta .parts-badge {
+        pointer-events: auto;
+        cursor: pointer;
+      }
+      .minidoll-card-meta .parts-badge:hover {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      /* Empty state */
+      .empty-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+        color: #888;
+        font-size: 16px;
+      }
+
+      /* Tabs */
+      .tabs {
+        display: flex;
+        gap: 4px;
+        margin-top: 16px;
+      }
+      .tab {
+        padding: 8px 16px;
+        border: none;
+        background: #e0e0e0;
+        color: #666;
+        border-radius: 6px 6px 0 0;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .tab:hover {
+        background: #d0d0d0;
+      }
+      .tab.active {
+        background: #e91e63;
+        color: white;
+      }
+
+      /* Parts view */
+      .parts-view {
+        display: none;
+      }
+      .parts-view.active {
+        display: block;
+      }
+      .minidoll-grid.active {
+        display: grid;
+      }
+      .minidoll-grid:not(.active) {
+        display: none;
+      }
+      .parts-section {
+        margin-bottom: 32px;
+      }
+      .parts-section h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #666;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #e0e0e0;
+      }
+      .parts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+      }
+      .part-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        overflow: hidden;
+        background: #e0e0e0
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2' ry='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpolyline points='21 15 16 10 5 21'/%3E%3C/svg%3E")
+          center center no-repeat;
+        aspect-ratio: 1;
+      }
+      .part-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+      .part-card:hover .part-card-overlay {
+        background: transparent;
+      }
+      .part-card:hover .part-card-overlay h4 {
+        opacity: 0;
+      }
+      .part-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .part-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 25%, transparent 50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 12px;
+        transition: background 0.2s;
+      }
+      .part-card-overlay h4 {
+        font-size: 12px;
+        font-weight: 600;
+        color: white;
+        line-height: 1.3;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        order: 2;
+        transition: opacity 0.2s;
+      }
+      .part-card-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+        order: 1;
+      }
+      .part-card-meta span {
+        font-size: 10px;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 3px 8px;
+        border-radius: 10px;
+        backdrop-filter: blur(4px);
+      }
+
+      /* Minifig popup items */
+      .minifig-item {
+        display: flex;
+        gap: 10px;
+        padding: 6px 0;
+        border-bottom: 1px solid #eee;
+        text-decoration: none;
+        color: inherit;
+      }
+      .minifig-item:last-child {
+        border-bottom: none;
+      }
+      .minifig-item:hover {
+        background: #f5f5f5;
+        margin: 0 -12px;
+        padding: 6px 12px;
+      }
+      .minifig-item img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+        background: #f5f5f5;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+      .minifig-item-info {
+        min-width: 0;
+        flex: 1;
+      }
+      .minifig-item-info h6 {
+        font-size: 11px;
+        font-weight: 500;
+        color: #333;
+        line-height: 1.3;
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .minifig-item-info span {
+        font-size: 10px;
+        color: #888;
+      }
+
+      /* Interactive badges in overlay */
+      .minidoll-card-meta .sets-badge {
+        pointer-events: auto;
+        cursor: pointer;
+      }
+      .minidoll-card-meta .sets-badge:hover {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      /* Global popup at body level */
+      .global-popup {
+        position: fixed;
+        width: 280px;
+        z-index: 10000;
+        display: none;
+        padding: 6px 0;
+      }
+      .global-popup.visible {
+        display: block;
+      }
+      .global-popup .popup-inner {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        padding: 12px;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+      .global-popup h5 {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .set-item {
+        display: flex;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+        text-decoration: none;
+        color: inherit;
+      }
+      .set-item:last-child {
+        border-bottom: none;
+      }
+      .set-item:hover {
+        background: #f5f5f5;
+        margin: 0 -12px;
+        padding: 8px 12px;
+      }
+      .set-item img {
+        width: 50px;
+        height: 38px;
+        object-fit: cover;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+      .set-item-info {
+        min-width: 0;
+      }
+      .set-item-info h6 {
+        font-size: 12px;
+        font-weight: 500;
+        color: #333;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 2px;
+      }
+      .set-item-info span {
+        font-size: 11px;
+        color: #888;
+      }
+
+      /* Parts popup items */
+      .part-item {
+        display: flex;
+        gap: 10px;
+        padding: 6px 0;
+        border-bottom: 1px solid #eee;
+        text-decoration: none;
+        color: inherit;
+      }
+      .part-item:last-child {
+        border-bottom: none;
+      }
+      .part-item:hover {
+        background: #f5f5f5;
+        margin: 0 -12px;
+        padding: 6px 12px;
+      }
+      .part-item img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        background: #f5f5f5;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+      .part-item-info {
+        min-width: 0;
+        flex: 1;
+      }
+      .part-item-info h6 {
+        font-size: 11px;
+        font-weight: 500;
+        color: #333;
+        line-height: 1.3;
+        margin-bottom: 2px;
+      }
+      .part-item-info span {
+        font-size: 10px;
+        color: #888;
+      }
+      .part-item .color-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .parts-badge {
+        cursor: pointer;
+      }
+      .parts-badge:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 8px 16px;
+        font-size: 11px;
+        color: #666;
+        background: rgba(245, 245, 245, 0.95);
+        border-radius: 8px 0 0 0;
+        z-index: 100;
+      }
+      footer a {
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>Lego Friends Minidolls</h1>
+          <input type="text" id="search" placeholder="Search names...">
+        </div>
+        <ul class="name-list" id="name-list"></ul>
+      </aside>
+
+      <main class="main">
+        <div class="main-header">
+          <h2 id="main-title">Select a character</h2>
+          <p id="main-subtitle"></p>
+          <div class="tabs">
+            <button class="tab active" data-view="minidolls">Minidolls</button>
+            <button class="tab" data-view="parts">Parts</button>
+          </div>
+        </div>
+        <div class="minidoll-grid active" id="minidoll-grid"></div>
+        <div class="parts-view" id="parts-view"></div>
+      </main>
+    </div>
+
+    <!-- Global popup elements -->
+    <div id="sets-popup" class="global-popup">
+      <div class="popup-inner"></div>
+    </div>
+    <div id="parts-popup" class="global-popup">
+      <div class="popup-inner"></div>
+    </div>
+    <div id="minifigs-popup" class="global-popup">
+      <div class="popup-inner"></div>
+    </div>
+    <footer>&copy; 2026 William Kapke &bull; Data provided by <a href="https://rebrickable.com" target="_blank">Rebrickable</a></footer>
+
+    <script>
+      let minidolls = [];
+      let nameGroups = {};
+      let selectedName = null;
+      let currentView = "minidolls";
+      let partToMinifigs = {}; // Maps part_num to array of minifigs that use it
+      let partImages = {}; // Maps part_num to array of image URLs
+
+      function extractName(fullName) {
+        // Try " - " first, then fall back to first comma
+        const dashIndex = fullName.indexOf(" - ");
+        if (dashIndex > 0) return fullName.substring(0, dashIndex);
+        const commaIndex = fullName.indexOf(", ");
+        if (commaIndex > 0) return fullName.substring(0, commaIndex);
+        return fullName;
+      }
+
+      function getOutfitDescription(fullName) {
+        const dashIndex = fullName.indexOf(" - ");
+        if (dashIndex > 0) return fullName.substring(dashIndex + 3);
+        const commaIndex = fullName.indexOf(", ");
+        if (commaIndex > 0) return fullName.substring(commaIndex + 2);
+        return "";
+      }
+
+      function cleanPartName(name) {
+        return name.replace(/^Minidoll\s+/i, "").replace(/^Minifig\s+/i, "");
+      }
+
+      // UUID pattern: 8-4-4-4-12 hex characters
+      const uuidPattern = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+
+      function getPartImageUrl(part) {
+        const images = partImages[part.part_num];
+        if (images && images.length > 0) {
+          const lastImage = images[images.length - 1];
+          // Check if last image is a photo (has UUID in filename)
+          if (uuidPattern.test(lastImage)) {
+            return lastImage;
+          }
+        }
+        // Fallback to default part image
+        return part.part_img_url || "";
+      }
+
+      function getSortedNames() {
+        return Object.keys(nameGroups).sort((a, b) => {
+          const countDiff = nameGroups[b].length - nameGroups[a].length;
+          if (countDiff !== 0) return countDiff;
+          return a.localeCompare(b);
+        });
+      }
+
+      async function init() {
+        const [minidollsRes, partImagesRes] = await Promise.all([
+          fetch("minidolls.json"),
+          fetch("part-images.json"),
+        ]);
+        minidolls = await minidollsRes.json();
+        partImages = await partImagesRes.json();
+
+        // Group by name
+        nameGroups = {};
+        for (const doll of minidolls) {
+          const name = extractName(doll.name);
+          if (!nameGroups[name]) {
+            nameGroups[name] = [];
+          }
+          nameGroups[name].push(doll);
+        }
+
+        // Build part to minifigs index
+        partToMinifigs = {};
+        for (const doll of minidolls) {
+          if (!doll.parts) continue;
+          for (const part of doll.parts) {
+            const key = `${part.part_num}_${part.color_rgb}`;
+            if (!partToMinifigs[key]) {
+              partToMinifigs[key] = [];
+            }
+            partToMinifigs[key].push(doll);
+          }
+        }
+
+        renderNameList(getSortedNames());
+        setupTabs();
+
+        // Restore last selected or pick first
+        const lastName = localStorage.getItem("lastMinidollName");
+        if (lastName && nameGroups[lastName]) {
+          selectName(lastName);
+        }
+        else {
+          const names = getSortedNames();
+          if (names.length) selectName(names[0]);
+        }
+      }
+
+      function renderNameList(names) {
+        const list = document.getElementById("name-list");
+        list.innerHTML = names.map((name) => `
+        <li class="name-item ${selectedName === name ? "active" : ""}" data-name="${name}">
+          <h3>${name}</h3>
+          <span class="count">${nameGroups[name].length}</span>
+        </li>
+      `).join("");
+
+        list.querySelectorAll(".name-item").forEach((el) => {
+          el.addEventListener("click", () => {
+            selectName(el.dataset.name);
+          });
+        });
+      }
+
+      function selectName(name) {
+        selectedName = name;
+        localStorage.setItem("lastMinidollName", name);
+
+        // Update sidebar active state
+        document.querySelectorAll(".name-item").forEach((el) => {
+          el.classList.toggle("active", el.dataset.name === name);
+        });
+
+        // Update main content
+        document.getElementById("main-title").textContent = name;
+        const dolls = nameGroups[name] || [];
+        document.getElementById("main-subtitle").textContent = `${dolls.length} version${dolls.length !== 1 ? "s" : ""}`;
+
+        const sorted = [...dolls].sort((a, b) => getOutfitDescription(a.name).localeCompare(getOutfitDescription(b.name)));
+        renderMinidolls(sorted);
+        renderPartsView(dolls);
+      }
+
+      function setupTabs() {
+        // Restore last selected tab
+        const savedView = localStorage.getItem("minidollsView") || "minidolls";
+        switchTab(savedView);
+
+        document.querySelectorAll(".tab").forEach((tab) => {
+          tab.addEventListener("click", () => {
+            switchTab(tab.dataset.view);
+          });
+        });
+      }
+
+      function switchTab(view) {
+        currentView = view;
+        localStorage.setItem("minidollsView", view);
+        document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("active", t.dataset.view === view));
+        document.getElementById("minidoll-grid").classList.toggle("active", view === "minidolls");
+        document.getElementById("parts-view").classList.toggle("active", view === "parts");
+      }
+
+      function renderPartsView(dolls) {
+        const partsView = document.getElementById("parts-view");
+
+        // Collect all unique parts from these dolls
+        const partsByCategory = { 0: [], 1: [], 2: [], 3: [], 4: [] };
+        const seenParts = new Set();
+
+        for (const doll of dolls) {
+          if (!doll.parts) continue;
+          for (const part of doll.parts) {
+            const key = `${part.part_num}_${part.color_rgb}`;
+            if (seenParts.has(key)) continue;
+            seenParts.add(key);
+
+            const category = getPartCategory(part.name);
+            partsByCategory[category].push({ ...part, key });
+          }
+        }
+
+        const categoryNames = ["Hair", "Head", "Torso", "Legs", "Other"];
+        let html = "";
+
+        for (let i = 0; i < 5; i++) {
+          const parts = partsByCategory[i];
+          if (parts.length === 0) continue;
+
+          html += `
+          <div class="parts-section">
+            <h3>${categoryNames[i]}</h3>
+            <div class="parts-grid">
+              ${
+            parts.map((part) => {
+              const usageCount = partToMinifigs[part.key]?.length || 0;
+              const minifigsData = JSON.stringify(partToMinifigs[part.key] || []);
+              return `
+                  <a href="${part.part_url}" target="_blank" class="part-card" data-minifigs='${
+                minifigsData.replace(/'/g, "&#39;")
+              }'>
+                    <img src="${getPartImageUrl(part)}" alt="" onerror="this.style.display='none'">
+                    <div class="part-card-overlay">
+                      <h4>${cleanPartName(part.name)}</h4>
+                      <div class="part-card-meta">
+                        <span>${part.part_num}</span>
+                        <span>used ${usageCount}x</span>
+                      </div>
+                    </div>
+                  </a>
+                `;
+            }).join("")
+          }
+            </div>
+          </div>
+        `;
+        }
+
+        if (html === "") {
+          html = '<div class="empty-state">No parts data available</div>';
+        }
+
+        partsView.innerHTML = html;
+        setupPartCardListeners();
+      }
+
+      function setupPartCardListeners() {
+        document.querySelectorAll(".part-card").forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            cancelHide();
+            showMinifigsPopup(card);
+          });
+          card.addEventListener("mouseleave", hidePopup);
+        });
+      }
+
+      function renderMinidolls(dolls) {
+        const grid = document.getElementById("minidoll-grid");
+        if (dolls.length === 0) {
+          grid.innerHTML = '<div class="empty-state">No minidolls found</div>';
+          return;
+        }
+
+        grid.innerHTML = dolls.map((doll) => {
+          const validSets = (doll.sets || []).filter((s) => s != null);
+          const setsCount = validSets.length;
+          const setsData = validSets.length > 0 ? JSON.stringify(validSets) : "";
+          const setsBadge = doll.sets
+            ? `<span class="sets-badge" data-sets='${setsData.replace(/'/g, "&#39;")}'>${setsCount} set${
+              setsCount !== 1 ? "s" : ""
+            }</span>`
+            : "";
+          const partsData = doll.parts ? JSON.stringify(doll.parts) : "";
+          const partsBadge = doll.parts
+            ? `<span class="parts-badge" data-parts='${partsData.replace(/'/g, "&#39;")}'>${doll.num_parts} parts</span>`
+            : `<span>${doll.num_parts} parts</span>`;
+          return `
+          <div class="minidoll-card">
+            <a href="${doll.set_url}" target="_blank">
+              <img src="${doll.set_img_url || ""}" alt="${doll.name}" loading="lazy" onerror="this.style.display='none'">
+            </a>
+            <div class="minidoll-card-overlay">
+              <h4>${getOutfitDescription(doll.name) || doll.name}</h4>
+              <div class="minidoll-card-meta">
+                <span>${doll.set_num}</span>
+                ${partsBadge}
+                ${setsBadge}
+              </div>
+            </div>
+          </div>
+        `;
+        }).join("");
+
+        setupPopupListeners();
+      }
+
+      // Search
+      document.getElementById("search").addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase();
+        const filtered = getSortedNames()
+          .filter((name) => name.toLowerCase().includes(query));
+        renderNameList(filtered);
+      });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.target.tagName === "INPUT") return;
+
+        const names = getSortedNames();
+        const currentIndex = names.indexOf(selectedName);
+
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          const newIndex = (currentIndex + 1) % names.length;
+          selectName(names[newIndex]);
+          document.querySelector(".name-item.active")?.scrollIntoView({ block: "nearest" });
+        }
+        else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          const newIndex = (currentIndex - 1 + names.length) % names.length;
+          selectName(names[newIndex]);
+          document.querySelector(".name-item.active")?.scrollIntoView({ block: "nearest" });
+        }
+      });
+
+      // Global popups
+      const setsPopup = document.getElementById("sets-popup");
+      const partsPopup = document.getElementById("parts-popup");
+      const minifigsPopup = document.getElementById("minifigs-popup");
+      let activePopup = null;
+      let hideTimeout = null;
+
+      function getPartCategory(name) {
+        if (name.startsWith("Hair")) return 0;
+        if (name.startsWith("Minidoll Head")) return 1;
+        if (name.startsWith("Minidoll Torso")) return 2;
+        if (name.startsWith("Minidoll Hips")) return 3;
+        return 4;
+      }
+
+      function sortParts(parts) {
+        return [...parts].sort((a, b) => getPartCategory(a.name) - getPartCategory(b.name));
+      }
+
+      function showSetsPopup(badge) {
+        const setsData = badge.dataset.sets;
+        if (!setsData) return;
+
+        const sets = JSON.parse(setsData);
+        setsPopup.querySelector(".popup-inner").innerHTML = `
+        <h5>Appears in</h5>
+        ${
+          sets.map((set) => `
+          <a href="${set.set_url}" target="_blank" class="set-item">
+            <img src="${set.set_img_url || ""}" alt="">
+            <div class="set-item-info">
+              <h6>${set.name}</h6>
+              <span>${set.set_num}${set.year ? ` &bull; ${set.year}` : ""}</span>
+            </div>
+          </a>
+        `).join("")
+        }
+      `;
+
+        positionPopup(setsPopup, badge);
+        activePopup = setsPopup;
+      }
+
+      function showPartsPopup(badge) {
+        const partsData = badge.dataset.parts;
+        if (!partsData) return;
+
+        const parts = sortParts(JSON.parse(partsData));
+        partsPopup.querySelector(".popup-inner").innerHTML = `
+        <h5>Parts</h5>
+        ${
+          parts.map((part) => `
+          <a href="${part.part_url}" target="_blank" class="part-item">
+            <img src="${getPartImageUrl(part)}" alt="">
+            <div class="part-item-info">
+              <h6>${part.name}</h6>
+              <span>${part.color_name}${part.quantity > 1 ? ` &times; ${part.quantity}` : ""}</span>
+            </div>
+            <div class="color-dot" style="background: #${part.color_rgb}"></div>
+          </a>
+        `).join("")
+        }
+      `;
+
+        positionPopup(partsPopup, badge);
+        activePopup = partsPopup;
+      }
+
+      function showMinifigsPopup(card) {
+        const minifigsData = card.dataset.minifigs;
+        if (!minifigsData) return;
+
+        const minifigs = JSON.parse(minifigsData);
+        if (minifigs.length === 0) return;
+
+        minifigsPopup.querySelector(".popup-inner").innerHTML = `
+        <h5>Used by</h5>
+        ${
+          minifigs.map((fig) => `
+          <a href="${fig.set_url}" target="_blank" class="minifig-item">
+            <img src="${fig.set_img_url || ""}" alt="">
+            <div class="minifig-item-info">
+              <h6>${fig.name}</h6>
+              <span>${fig.set_num}</span>
+            </div>
+          </a>
+        `).join("")
+        }
+      `;
+
+        positionPopup(minifigsPopup, card);
+        activePopup = minifigsPopup;
+      }
+
+      function positionPopup(popup, badge) {
+        const rect = badge.getBoundingClientRect();
+        let top = rect.bottom + 6;
+        let left = rect.left - 120;
+
+        // Keep in viewport
+        if (left < 10) left = 10;
+        if (left + 280 > window.innerWidth - 10) left = window.innerWidth - 290;
+        if (top + 200 > window.innerHeight) top = rect.top - popup.offsetHeight - 6;
+
+        popup.style.top = top + "px";
+        popup.style.left = left + "px";
+        popup.classList.add("visible");
+      }
+
+      function hidePopup() {
+        hideTimeout = setTimeout(() => {
+          if (activePopup) activePopup.classList.remove("visible");
+          activePopup = null;
+        }, 100);
+      }
+
+      function cancelHide() {
+        if (hideTimeout) clearTimeout(hideTimeout);
+      }
+
+      setsPopup.addEventListener("mouseenter", cancelHide);
+      setsPopup.addEventListener("mouseleave", hidePopup);
+      partsPopup.addEventListener("mouseenter", cancelHide);
+      partsPopup.addEventListener("mouseleave", hidePopup);
+      minifigsPopup.addEventListener("mouseenter", cancelHide);
+      minifigsPopup.addEventListener("mouseleave", hidePopup);
+
+      function setupPopupListeners() {
+        document.querySelectorAll(".sets-badge").forEach((badge) => {
+          badge.addEventListener("mouseenter", () => {
+            cancelHide();
+            showSetsPopup(badge);
+          });
+          badge.addEventListener("mouseleave", hidePopup);
+        });
+        document.querySelectorAll(".parts-badge").forEach((badge) => {
+          badge.addEventListener("mouseenter", () => {
+            cancelHide();
+            showPartsPopup(badge);
+          });
+          badge.addEventListener("mouseleave", hidePopup);
+        });
+      }
+
+      init();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+# no dot folders
+.*/
+
+Thumbs.db
+mocks/
+
+
+fetch-*.*

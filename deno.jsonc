@@ -1,0 +1,11 @@
+{
+  "imports": {
+    "@std/async": "jsr:@std/async@^1.0.16"
+  },
+  "fmt": {
+    "lineWidth": 140,
+    "proseWrap": "preserve",
+    "nextControlFlowPosition": "nextLine",
+    "exclude": ["docs/**"]
+  }
+}

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Big Buy</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #fff;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        height: 100vh;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        background: #fafafa;
+        border-right: 1px solid #e0e0e0;
+        overflow-y: auto;
+      }
+      .sidebar-header {
+        padding: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 0;
+        background: #fafafa;
+        z-index: 10;
+      }
+      .sidebar-header h1 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+      }
+      .sidebar-header input {
+        width: 100%;
+        margin-top: 12px;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+      .sidebar-header input:focus {
+        outline: none;
+        border-color: #999;
+      }
+      .set-list {
+        list-style: none;
+      }
+      .set-item {
+        padding: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: flex-end;
+        min-height: 100px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+      .set-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+        transition: background 0.2s;
+      }
+      .set-item:hover::before {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.2) 100%);
+      }
+      .set-item.active {
+        box-shadow: inset 0 0 0 3px #3b82f6;
+      }
+      .set-item.active::before {
+        background: linear-gradient(to top, rgba(30, 64, 175, 0.9) 0%, rgba(30, 64, 175, 0.3) 60%, transparent 100%);
+      }
+      .set-item-info {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+      }
+      .set-item-info h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      }
+      .set-item-info p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.8);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Detail Panel */
+      .detail {
+        position: relative;
+        background: #111;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Overlay Info */
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 30px 40px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+        color: white;
+        z-index: 10;
+      }
+      .hero-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .hero-meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 14px;
+      }
+      .hero-meta span {
+        padding: 6px 14px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      /* Hero Image Area */
+      .hero-area {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+        padding-bottom: 107px;
+      }
+      .hero-image {
+        width: 100%;
+        display: block;
+      }
+
+      /* Thumbnails */
+      .thumbnails {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        gap: 8px;
+        padding: 16px 20px;
+        background: transparent;
+        overflow-x: auto;
+      }
+      .thumbnails::-webkit-scrollbar {
+        height: 6px;
+      }
+      .thumbnails::-webkit-scrollbar-thumb {
+        background: #444;
+        border-radius: 3px;
+      }
+      .thumb {
+        flex-shrink: 0;
+        width: 100px;
+        height: 75px;
+        border-radius: 6px;
+        object-fit: cover;
+        cursor: pointer;
+        opacity: 0.4;
+        border: 3px solid transparent;
+        transition: all 0.2s;
+        background: #333;
+        filter: grayscale(50%);
+      }
+      .thumb:hover {
+        opacity: 0.7;
+        filter: grayscale(0%);
+      }
+      .thumb.active {
+        opacity: 1;
+        border-color: #3b82f6;
+        filter: grayscale(0%);
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.5);
+        transform: scale(1.05);
+      }
+
+      /* Image counter */
+      .image-counter {
+        position: absolute;
+        bottom: 123px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        backdrop-filter: blur(10px);
+        z-index: 20;
+      }
+
+      /* Empty state */
+      .empty-state {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-size: 16px;
+      }
+
+      /* Hidden */
+      .hidden {
+        display: none !important;
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 8px 16px;
+        font-size: 11px;
+        color: #666;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 8px 0 0 0;
+        z-index: 100;
+      }
+      footer a {
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>My Big Friends Buy</h1>
+          <input type="text" id="search" placeholder="Search sets...">
+        </div>
+        <ul class="set-list" id="set-list"></ul>
+      </aside>
+
+      <main class="detail">
+        <div class="hero-overlay" id="hero-overlay">
+          <h2 class="hero-title" id="hero-title"></h2>
+          <div class="hero-meta" id="hero-meta"></div>
+        </div>
+        <div class="hero-area" id="hero-area">
+          <img class="hero-image" id="hero-image" src="" alt="">
+        </div>
+        <div class="image-counter" id="image-counter"></div>
+        <div class="thumbnails" id="thumbnails"></div>
+        <div class="empty-state hidden" id="empty-state">No images available</div>
+      </main>
+    </div>
+    <footer>&copy; 2026 William Kapke &bull; Data provided by <a href="https://rebrickable.com" target="_blank">Rebrickable</a></footer>
+
+    <script>
+      let sets = [];
+      let selectedSet = null;
+      let selectedImageIndex = 0;
+
+      function convertToLocalPath(url, setNum) {
+        const filename = url.split("/").pop();
+        return `./images/${setNum}/${filename}`;
+      }
+
+      async function init() {
+        const res = await fetch("sets.json");
+        sets = await res.json();
+
+        // Convert URLs to local paths
+        sets.forEach((item) => {
+          if (item.images) {
+            item.images = item.images.map((url) => convertToLocalPath(url, item.set.set_num));
+          }
+        });
+
+        renderSetList(sets);
+        if (sets.length > 0) {
+          const lastSetNum = localStorage.getItem("lastSetNum");
+          const lastSet = lastSetNum && sets.find((s) => s.set.set_num === lastSetNum);
+          selectSet(lastSet || sets[0]);
+          document.querySelector(".set-item.active")?.scrollIntoView({ block: "nearest" });
+        }
+      }
+
+      function renderSetList(filteredSets) {
+        const list = document.getElementById("set-list");
+        list.innerHTML = filteredSets.map((item, index) => {
+          const thumbSrc = item.images?.[0] || "";
+          return `
+          <li class="set-item ${selectedSet?.set.set_num === item.set.set_num ? "active" : ""}" data-index="${
+            sets.indexOf(item)
+          }" style="background-image: url('${thumbSrc}')">
+            <div class="set-item-info">
+              <h3>${item.set.name}</h3>
+              <p>${item.set.set_num} &bull; ${item.set.num_parts} parts</p>
+            </div>
+          </li>
+        `;
+        }).join("");
+
+        list.querySelectorAll(".set-item").forEach((el) => {
+          el.addEventListener("click", () => {
+            const index = parseInt(el.dataset.index);
+            selectSet(sets[index]);
+          });
+        });
+      }
+
+      function selectSet(item) {
+        selectedSet = item;
+        selectedImageIndex = 0;
+        localStorage.setItem("lastSetNum", item.set.set_num);
+
+        document.querySelectorAll(".set-item").forEach((el) => {
+          el.classList.toggle("active", sets[parseInt(el.dataset.index)]?.set.set_num === item.set.set_num);
+        });
+
+        document.getElementById("hero-title").textContent = item.set.name;
+        document.getElementById("hero-meta").innerHTML = `
+        <span>${item.set.set_num}</span>
+        <span>${item.set.year}</span>
+        <span>${item.set.num_parts} parts</span>
+      `;
+
+        const images = item.images || [];
+        const emptyState = document.getElementById("empty-state");
+        const heroArea = document.getElementById("hero-area");
+        const thumbnails = document.getElementById("thumbnails");
+        const counter = document.getElementById("image-counter");
+
+        if (images.length === 0) {
+          emptyState.classList.remove("hidden");
+          heroArea.classList.add("hidden");
+          thumbnails.classList.add("hidden");
+          counter.classList.add("hidden");
+        }
+        else {
+          emptyState.classList.add("hidden");
+          heroArea.classList.remove("hidden");
+          thumbnails.classList.remove("hidden");
+          counter.classList.remove("hidden");
+          renderThumbnails(images);
+          selectImage(0);
+        }
+      }
+
+      function renderThumbnails(images) {
+        const container = document.getElementById("thumbnails");
+        container.innerHTML = images.map((url, index) => `
+        <img class="thumb ${index === selectedImageIndex ? "active" : ""}" src="${url}" alt="" data-index="${index}" loading="lazy">
+      `).join("");
+
+        container.querySelectorAll(".thumb").forEach((el) => {
+          el.addEventListener("click", () => {
+            selectImage(parseInt(el.dataset.index));
+          });
+        });
+      }
+
+      function selectImage(index) {
+        const images = selectedSet?.images || [];
+        if (images.length === 0) return;
+
+        selectedImageIndex = index;
+        document.getElementById("hero-image").src = images[index];
+        document.getElementById("image-counter").textContent = `${index + 1} / ${images.length}`;
+
+        document.querySelectorAll(".thumb").forEach((el, i) => {
+          el.classList.toggle("active", i === index);
+        });
+      }
+
+      // Search
+      document.getElementById("search").addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase();
+        const filtered = sets.filter((item) =>
+          item.set.name.toLowerCase().includes(query) ||
+          item.set.set_num.toLowerCase().includes(query) ||
+          String(item.set.year).includes(query)
+        );
+        renderSetList(filtered);
+      });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (!selectedSet) return;
+
+        // Left/Right: navigate images
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+          const images = selectedSet.images || [];
+          if (images.length === 0) return;
+          if (e.key === "ArrowRight") {
+            selectImage((selectedImageIndex + 1) % images.length);
+          }
+          else {
+            selectImage((selectedImageIndex - 1 + images.length) % images.length);
+          }
+        }
+
+        // Up/Down: navigate sets
+        if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+          e.preventDefault();
+          const currentIndex = sets.indexOf(selectedSet);
+          let newIndex;
+          if (e.key === "ArrowDown") {
+            newIndex = (currentIndex + 1) % sets.length;
+          }
+          else {
+            newIndex = (currentIndex - 1 + sets.length) % sets.length;
+          }
+          selectSet(sets[newIndex]);
+          // Scroll the selected item into view
+          document.querySelector(".set-item.active")?.scrollIntoView({ block: "nearest" });
+        }
+      });
+
+      init();
+    </script>
+  </body>
+</html>
