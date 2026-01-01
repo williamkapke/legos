@@ -1,0 +1,858 @@
+{
+  "1": {
+    "name": "White",
+    "rgb": "#FFFFFF"
+  },
+  "2": {
+    "name": "Tan",
+    "rgb": "#EED9A4"
+  },
+  "3": {
+    "name": "Yellow",
+    "rgb": "#FFE001"
+  },
+  "4": {
+    "name": "Orange",
+    "rgb": "#FF7E14"
+  },
+  "5": {
+    "name": "Red",
+    "rgb": "#B30006"
+  },
+  "6": {
+    "name": "Green",
+    "rgb": "#00923D"
+  },
+  "7": {
+    "name": "Blue",
+    "rgb": "#0057A6"
+  },
+  "8": {
+    "name": "Brown",
+    "rgb": ""
+  },
+  "9": {
+    "name": "Light Gray",
+    "rgb": ""
+  },
+  "10": {
+    "name": "Dark Gray",
+    "rgb": ""
+  },
+  "11": {
+    "name": "Black",
+    "rgb": "#212121"
+  },
+  "12": {
+    "name": "Trans-Clear",
+    "rgb": "#EEEEEE"
+  },
+  "13": {
+    "name": "Trans-Brown",
+    "rgb": "#939484"
+  },
+  "14": {
+    "name": "Trans-Dark Blue",
+    "rgb": "#00296B"
+  },
+  "15": {
+    "name": "Trans-Light Blue",
+    "rgb": "#68BCC5"
+  },
+  "16": {
+    "name": "Trans-Neon Green",
+    "rgb": ""
+  },
+  "17": {
+    "name": "Trans-Red",
+    "rgb": "#9C0010"
+  },
+  "18": {
+    "name": "Trans-Neon Orange",
+    "rgb": ""
+  },
+  "19": {
+    "name": "Trans-Yellow",
+    "rgb": "#EBF72D"
+  },
+  "20": {
+    "name": "Trans-Green",
+    "rgb": "#217625"
+  },
+  "21": {
+    "name": "Chrome Gold",
+    "rgb": "#f1f2e1"
+  },
+  "22": {
+    "name": "Chrome Silver",
+    "rgb": ""
+  },
+  "23": {
+    "name": "Pink",
+    "rgb": ""
+  },
+  "24": {
+    "name": "Purple",
+    "rgb": ""
+  },
+  "25": {
+    "name": "Salmon",
+    "rgb": ""
+  },
+  "26": {
+    "name": "Light Salmon",
+    "rgb": ""
+  },
+  "27": {
+    "name": "Rust",
+    "rgb": ""
+  },
+  "28": {
+    "name": "Nougat",
+    "rgb": "#FFAF7D"
+  },
+  "29": {
+    "name": "Earth Orange",
+    "rgb": ""
+  },
+  "31": {
+    "name": "Medium Orange",
+    "rgb": ""
+  },
+  "32": {
+    "name": "Light Orange",
+    "rgb": ""
+  },
+  "33": {
+    "name": "Light Yellow",
+    "rgb": ""
+  },
+  "34": {
+    "name": "Lime",
+    "rgb": "#C4E000"
+  },
+  "35": {
+    "name": "Light Lime",
+    "rgb": ""
+  },
+  "36": {
+    "name": "Bright Green",
+    "rgb": "#10CB31"
+  },
+  "37": {
+    "name": "Medium Green",
+    "rgb": ""
+  },
+  "38": {
+    "name": "Light Green",
+    "rgb": ""
+  },
+  "39": {
+    "name": "Dark Turquoise",
+    "rgb": "#00A29F"
+  },
+  "40": {
+    "name": "Light Turquoise",
+    "rgb": ""
+  },
+  "41": {
+    "name": "Aqua",
+    "rgb": ""
+  },
+  "42": {
+    "name": "Medium Blue",
+    "rgb": "#82ADD8"
+  },
+  "43": {
+    "name": "Violet",
+    "rgb": ""
+  },
+  "44": {
+    "name": "Light Violet",
+    "rgb": ""
+  },
+  "46": {
+    "name": "Glow In Dark Opaque",
+    "rgb": ""
+  },
+  "47": {
+    "name": "Dark Pink",
+    "rgb": "#EF5BB3"
+  },
+  "48": {
+    "name": "Sand Green",
+    "rgb": "#A2BFA3"
+  },
+  "49": {
+    "name": "Very Light Gray",
+    "rgb": ""
+  },
+  "50": {
+    "name": "Trans-Dark Pink",
+    "rgb": "#CE1d9b"
+  },
+  "51": {
+    "name": "Trans-Purple",
+    "rgb": "#5525B7"
+  },
+  "52": {
+    "name": "Chrome Blue",
+    "rgb": ""
+  },
+  "54": {
+    "name": "Sand Purple",
+    "rgb": ""
+  },
+  "55": {
+    "name": "Sand Blue",
+    "rgb": "#8899AB"
+  },
+  "56": {
+    "name": "Rose Pink",
+    "rgb": ""
+  },
+  "57": {
+    "name": "Chrome Antique Brass",
+    "rgb": ""
+  },
+  "58": {
+    "name": "Sand Red",
+    "rgb": ""
+  },
+  "59": {
+    "name": "Dark Red",
+    "rgb": "#6A0E15"
+  },
+  "60": {
+    "name": "Milky White",
+    "rgb": ""
+  },
+  "61": {
+    "name": "Pearl Light Gold",
+    "rgb": ""
+  },
+  "62": {
+    "name": "Light Blue",
+    "rgb": ""
+  },
+  "63": {
+    "name": "Dark Blue",
+    "rgb": "#243757"
+  },
+  "64": {
+    "name": "Chrome Green",
+    "rgb": ""
+  },
+  "65": {
+    "name": "Metallic Gold",
+    "rgb": "#B8860B"
+  },
+  "66": {
+    "name": "Pearl Light Gray",
+    "rgb": ""
+  },
+  "67": {
+    "name": "Metallic Silver",
+    "rgb": "#C0C0C0"
+  },
+  "68": {
+    "name": "Dark Orange",
+    "rgb": "#B35408"
+  },
+  "69": {
+    "name": "Dark Tan",
+    "rgb": "#B89869"
+  },
+  "70": {
+    "name": "Metallic Green",
+    "rgb": ""
+  },
+  "71": {
+    "name": "Magenta",
+    "rgb": "#B72276"
+  },
+  "72": {
+    "name": "Maersk Blue",
+    "rgb": ""
+  },
+  "73": {
+    "name": "Medium Violet",
+    "rgb": ""
+  },
+  "74": {
+    "name": "Trans-Medium Blue",
+    "rgb": ""
+  },
+  "76": {
+    "name": "Medium Lime",
+    "rgb": ""
+  },
+  "77": {
+    "name": "Pearl Dark Gray",
+    "rgb": "#666660"
+  },
+  "78": {
+    "name": "Pearl Sand Blue",
+    "rgb": ""
+  },
+  "80": {
+    "name": "Dark Green",
+    "rgb": "#2E5543"
+  },
+  "81": {
+    "name": "Flat Dark Gold",
+    "rgb": ""
+  },
+  "82": {
+    "name": "Chrome Pink",
+    "rgb": ""
+  },
+  "83": {
+    "name": "Pearl White",
+    "rgb": ""
+  },
+  "84": {
+    "name": "Copper",
+    "rgb": ""
+  },
+  "85": {
+    "name": "Dark Bluish Gray",
+    "rgb": "#595D60"
+  },
+  "86": {
+    "name": "Light Bluish Gray",
+    "rgb": "#AFB5C7"
+  },
+  "87": {
+    "name": "Sky Blue",
+    "rgb": ""
+  },
+  "88": {
+    "name": "Reddish Brown",
+    "rgb": "#82422A"
+  },
+  "89": {
+    "name": "Dark Purple",
+    "rgb": "#5F2683"
+  },
+  "90": {
+    "name": "Light Nougat",
+    "rgb": "#FECCB0"
+  },
+  "91": {
+    "name": "Light Brown",
+    "rgb": ""
+  },
+  "93": {
+    "name": "Light Purple",
+    "rgb": ""
+  },
+  "94": {
+    "name": "Medium Dark Pink",
+    "rgb": ""
+  },
+  "95": {
+    "name": "Flat Silver",
+    "rgb": "#8D949C"
+  },
+  "96": {
+    "name": "Very Light Orange",
+    "rgb": ""
+  },
+  "97": {
+    "name": "Royal Blue (Old Blue-Violet)",
+    "rgb": ""
+  },
+  "98": {
+    "name": "Trans-Orange",
+    "rgb": "#E96F01"
+  },
+  "99": {
+    "name": "Very Light Bluish Gray",
+    "rgb": ""
+  },
+  "100": {
+    "name": "Glitter Trans-Dark Pink",
+    "rgb": "#CE1d9b"
+  },
+  "101": {
+    "name": "Glitter Trans-Clear",
+    "rgb": ""
+  },
+  "102": {
+    "name": "Glitter Trans-Purple",
+    "rgb": "#3A2B82"
+  },
+  "103": {
+    "name": "Bright Light Yellow",
+    "rgb": "#FFF08C"
+  },
+  "104": {
+    "name": "Bright Pink",
+    "rgb": "#F7BCDA"
+  },
+  "105": {
+    "name": "Bright Light Blue",
+    "rgb": "#BCD1ED"
+  },
+  "106": {
+    "name": "Fabuland Brown",
+    "rgb": ""
+  },
+  "107": {
+    "name": "Trans-Pink",
+    "rgb": ""
+  },
+  "108": {
+    "name": "Trans-Bright Green",
+    "rgb": "#10Cb31"
+  },
+  "109": {
+    "name": "Dark Royal Blue",
+    "rgb": ""
+  },
+  "110": {
+    "name": "Bright Light Orange",
+    "rgb": "#FFC700"
+  },
+  "111": {
+    "name": "Speckle Black-Silver",
+    "rgb": ""
+  },
+  "113": {
+    "name": "Trans-Aqua",
+    "rgb": ""
+  },
+  "114": {
+    "name": "Trans-Light Purple",
+    "rgb": ""
+  },
+  "115": {
+    "name": "Pearl Gold",
+    "rgb": "#E79E1D"
+  },
+  "116": {
+    "name": "Speckle Black-Copper",
+    "rgb": ""
+  },
+  "117": {
+    "name": "Speckle DBGray-Silver",
+    "rgb": ""
+  },
+  "118": {
+    "name": "Glow In Dark Trans",
+    "rgb": ""
+  },
+  "119": {
+    "name": "Pearl Very Light Gray",
+    "rgb": ""
+  },
+  "120": {
+    "name": "Dark Brown",
+    "rgb": "#50372F"
+  },
+  "121": {
+    "name": "Trans-Neon Yellow",
+    "rgb": ""
+  },
+  "122": {
+    "name": "Chrome Black",
+    "rgb": ""
+  },
+  "123": {
+    "name": "Mx White",
+    "rgb": ""
+  },
+  "124": {
+    "name": "Mx Light Bluish Gray",
+    "rgb": ""
+  },
+  "125": {
+    "name": "Mx Light Gray",
+    "rgb": ""
+  },
+  "126": {
+    "name": "Mx Charcoal Gray",
+    "rgb": ""
+  },
+  "127": {
+    "name": "Mx Tile Gray",
+    "rgb": ""
+  },
+  "128": {
+    "name": "Mx Black",
+    "rgb": ""
+  },
+  "129": {
+    "name": "Mx Red",
+    "rgb": ""
+  },
+  "130": {
+    "name": "Mx Pink Red",
+    "rgb": ""
+  },
+  "131": {
+    "name": "Mx Tile Brown",
+    "rgb": ""
+  },
+  "132": {
+    "name": "Mx Brown",
+    "rgb": ""
+  },
+  "133": {
+    "name": "Mx Buff",
+    "rgb": ""
+  },
+  "134": {
+    "name": "Mx Terracotta",
+    "rgb": ""
+  },
+  "135": {
+    "name": "Mx Orange",
+    "rgb": ""
+  },
+  "136": {
+    "name": "Mx Light Orange",
+    "rgb": ""
+  },
+  "137": {
+    "name": "Mx Light Yellow",
+    "rgb": ""
+  },
+  "138": {
+    "name": "Mx Ochre Yellow",
+    "rgb": ""
+  },
+  "139": {
+    "name": "Mx Lemon",
+    "rgb": ""
+  },
+  "140": {
+    "name": "Mx Olive Green",
+    "rgb": ""
+  },
+  "141": {
+    "name": "Mx Pastel Green",
+    "rgb": ""
+  },
+  "142": {
+    "name": "Mx Aqua Green",
+    "rgb": ""
+  },
+  "143": {
+    "name": "Mx Tile Blue",
+    "rgb": ""
+  },
+  "144": {
+    "name": "Mx Medium Blue",
+    "rgb": ""
+  },
+  "145": {
+    "name": "Mx Pastel Blue",
+    "rgb": ""
+  },
+  "146": {
+    "name": "Mx Teal Blue",
+    "rgb": ""
+  },
+  "147": {
+    "name": "Mx Violet",
+    "rgb": ""
+  },
+  "148": {
+    "name": "Mx Pink",
+    "rgb": ""
+  },
+  "149": {
+    "name": "Mx Clear",
+    "rgb": ""
+  },
+  "150": {
+    "name": "Medium Nougat",
+    "rgb": "#E3A05B"
+  },
+  "151": {
+    "name": "Speckle Black-Gold",
+    "rgb": ""
+  },
+  "152": {
+    "name": "Light Aqua",
+    "rgb": "#CFEFEA"
+  },
+  "153": {
+    "name": "Dark Azure",
+    "rgb": "#009FE0"
+  },
+  "154": {
+    "name": "Lavender",
+    "rgb": "#D3BDE3"
+  },
+  "155": {
+    "name": "Olive Green",
+    "rgb": "#ABA953"
+  },
+  "156": {
+    "name": "Medium Azure",
+    "rgb": "#6ACEE0"
+  },
+  "157": {
+    "name": "Medium Lavender",
+    "rgb": "#C689D9"
+  },
+  "158": {
+    "name": "Yellowish Green",
+    "rgb": "#E7F2A7"
+  },
+  "159": {
+    "name": "Glow In Dark White",
+    "rgb": "#d9d9d9"
+  },
+  "160": {
+    "name": "Fabuland Orange",
+    "rgb": ""
+  },
+  "161": {
+    "name": "Dark Yellow",
+    "rgb": ""
+  },
+  "162": {
+    "name": "Glitter Trans-Light Blue",
+    "rgb": "#68BCC5"
+  },
+  "163": {
+    "name": "Glitter Trans-Neon Green",
+    "rgb": ""
+  },
+  "164": {
+    "name": "Trans-Light Orange",
+    "rgb": ""
+  },
+  "165": {
+    "name": "Neon Orange",
+    "rgb": ""
+  },
+  "166": {
+    "name": "Neon Green",
+    "rgb": ""
+  },
+  "167": {
+    "name": "Reddish Orange",
+    "rgb": "#FF5500"
+  },
+  "168": {
+    "name": "Umber",
+    "rgb": "#735442"
+  },
+  "169": {
+    "name": "Sienna",
+    "rgb": "#EA8339"
+  },
+  "170": {
+    "name": "Satin Trans-Yellow",
+    "rgb": "#EBF72D"
+  },
+  "171": {
+    "name": "Lemon",
+    "rgb": ""
+  },
+  "172": {
+    "name": "Warm Yellowish Orange",
+    "rgb": ""
+  },
+  "173": {
+    "name": "Ochre Yellow",
+    "rgb": "#D89905"
+  },
+  "174": {
+    "name": "Blue Violet",
+    "rgb": "#806AEC"
+  },
+  "175": {
+    "name": "Warm Pink",
+    "rgb": "#F6C6BD"
+  },
+  "210": {
+    "name": "Mx Foil Dark Gray",
+    "rgb": ""
+  },
+  "211": {
+    "name": "Mx Foil Light Gray",
+    "rgb": ""
+  },
+  "212": {
+    "name": "Mx Foil Dark Green",
+    "rgb": ""
+  },
+  "213": {
+    "name": "Mx Foil Light Green",
+    "rgb": ""
+  },
+  "214": {
+    "name": "Mx Foil Dark Blue",
+    "rgb": ""
+  },
+  "215": {
+    "name": "Mx Foil Light Blue",
+    "rgb": ""
+  },
+  "216": {
+    "name": "Mx Foil Violet",
+    "rgb": ""
+  },
+  "217": {
+    "name": "Mx Foil Red",
+    "rgb": ""
+  },
+  "218": {
+    "name": "Mx Foil Yellow",
+    "rgb": ""
+  },
+  "219": {
+    "name": "Mx Foil Orange",
+    "rgb": ""
+  },
+  "220": {
+    "name": "Coral",
+    "rgb": "#FF8172"
+  },
+  "221": {
+    "name": "Trans-Light Green",
+    "rgb": ""
+  },
+  "222": {
+    "name": "Glitter Trans-Orange",
+    "rgb": ""
+  },
+  "223": {
+    "name": "Satin Trans-Light Blue",
+    "rgb": "#68BCC5"
+  },
+  "224": {
+    "name": "Satin Trans-Dark Pink",
+    "rgb": "#CE1d9b"
+  },
+  "225": {
+    "name": "Dark Nougat",
+    "rgb": ""
+  },
+  "226": {
+    "name": "Trans-Light Bright Green",
+    "rgb": ""
+  },
+  "227": {
+    "name": "Clikits Lavender",
+    "rgb": ""
+  },
+  "228": {
+    "name": "Satin Trans-Clear",
+    "rgb": "#EEEEEE"
+  },
+  "229": {
+    "name": "Satin Trans-Brown",
+    "rgb": ""
+  },
+  "230": {
+    "name": "Satin Trans-Purple",
+    "rgb": "#8320B7"
+  },
+  "231": {
+    "name": "Dark Salmon",
+    "rgb": ""
+  },
+  "232": {
+    "name": "Satin Trans-Dark Blue",
+    "rgb": "#1552e2"
+  },
+  "233": {
+    "name": "Satin Trans-Bright Green",
+    "rgb": "#7fe15b"
+  },
+  "234": {
+    "name": "Trans-Medium Purple",
+    "rgb": ""
+  },
+  "235": {
+    "name": "Reddish Gold",
+    "rgb": ""
+  },
+  "236": {
+    "name": "Neon Yellow",
+    "rgb": "#FFFC00"
+  },
+  "237": {
+    "name": "Bionicle Copper",
+    "rgb": ""
+  },
+  "238": {
+    "name": "Bionicle Gold",
+    "rgb": ""
+  },
+  "239": {
+    "name": "Bionicle Silver",
+    "rgb": ""
+  },
+  "240": {
+    "name": "Medium Brown",
+    "rgb": "#A16C42"
+  },
+  "241": {
+    "name": "Medium Tan",
+    "rgb": "#FBC685"
+  },
+  "242": {
+    "name": "Dark Olive Green",
+    "rgb": ""
+  },
+  "243": {
+    "name": "Pearl Sand Purple",
+    "rgb": ""
+  },
+  "244": {
+    "name": "Pearl Black",
+    "rgb": ""
+  },
+  "245": {
+    "name": "Lilac",
+    "rgb": ""
+  },
+  "246": {
+    "name": "Light Lilac",
+    "rgb": ""
+  },
+  "247": {
+    "name": "Little Robots Blue",
+    "rgb": ""
+  },
+  "248": {
+    "name": "Fabuland Lime",
+    "rgb": ""
+  },
+  "249": {
+    "name": "Reddish Copper",
+    "rgb": ""
+  },
+  "250": {
+    "name": "Metallic Copper",
+    "rgb": ""
+  },
+  "251": {
+    "name": "Trans-Black",
+    "rgb": "#777777"
+  },
+  "252": {
+    "name": "Pearl Red",
+    "rgb": ""
+  },
+  "253": {
+    "name": "Pearl Green",
+    "rgb": ""
+  },
+  "254": {
+    "name": "Pearl Blue",
+    "rgb": ""
+  },
+  "255": {
+    "name": "Pearl Brown",
+    "rgb": ""
+  }
+}

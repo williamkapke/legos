@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO Set Inventory</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        height: 100vh;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        background: #fff;
+        border-right: 1px solid #e0e0e0;
+        overflow-y: auto;
+      }
+      .sidebar-header {
+        padding: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 10;
+      }
+      .sidebar-header h1 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+      }
+      .set-list {
+        list-style: none;
+      }
+      .set-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .set-item:hover {
+        background: #f5f5f5;
+      }
+      .set-item.active {
+        background: #e3f2fd;
+        border-left: 3px solid #2196f3;
+      }
+      .set-item img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        border-radius: 4px;
+        background: #f5f5f5;
+      }
+      .set-item-info h3 {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 2px;
+      }
+      .set-item-info span {
+        font-size: 12px;
+        color: #888;
+      }
+
+      /* Main Content */
+      .main {
+        overflow-y: auto;
+        padding: 30px;
+      }
+      .main-header {
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .main-header img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      .main-header-info h2 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 4px;
+      }
+      .main-header-info p {
+        font-size: 14px;
+        color: #888;
+      }
+      .progress-bar {
+        margin-top: 10px;
+        height: 8px;
+        background: #e0e0e0;
+        border-radius: 4px;
+        overflow: hidden;
+        width: 300px;
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background: #4caf50;
+        transition: width 0.3s;
+      }
+
+      /* Parts Grid */
+      .parts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+      }
+      .part-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: opacity 0.3s, transform 0.2s;
+      }
+      .part-card-color {
+        padding: 6px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        text-align: center;
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      }
+      .part-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      }
+      .part-card.complete {
+        background: #555;
+      }
+      .part-card.complete .part-card-image {
+        background: #555;
+      }
+      .part-card.complete .part-card-image img {
+        opacity: 0.5;
+      }
+      .part-card.complete .part-card-info {
+        background: #555;
+        border-top-color: #666;
+      }
+      .part-card.complete .part-card-info h4,
+      .part-card.complete .part-card-controls span {
+        color: #ccc;
+      }
+      .part-card-image {
+        position: relative;
+        aspect-ratio: 1;
+        background: #f9f9f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .part-card-image img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+      }
+      .part-card-image a {
+        display: contents;
+      }
+      .part-card-checkmark {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        background: #4caf50;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .part-card.complete .part-card-checkmark {
+        display: flex;
+      }
+      .part-card-info {
+        padding: 12px;
+        border-top: 1px solid #eee;
+      }
+      .part-card-info h4 {
+        font-size: 11px;
+        font-weight: 500;
+        color: #666;
+        margin-bottom: 8px;
+        line-height: 1.3;
+        height: 28px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .part-card-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .part-card-controls span {
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+      }
+      .part-card-buttons {
+        display: flex;
+        gap: 4px;
+      }
+      .part-card-buttons button {
+        width: 28px;
+        height: 28px;
+        border: none;
+        border-radius: 6px;
+        background: #e0e0e0;
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .part-card-buttons button:hover {
+        background: #d0d0d0;
+      }
+      .part-card-buttons button:active {
+        background: #c0c0c0;
+      }
+
+      /* Empty state */
+      .empty-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+        color: #888;
+        font-size: 16px;
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 8px 16px;
+        font-size: 11px;
+        color: #666;
+        background: rgba(245, 245, 245, 0.95);
+        border-radius: 8px 0 0 0;
+      }
+      footer a {
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>Set Inventory</h1>
+        </div>
+        <ul class="set-list" id="set-list"></ul>
+      </aside>
+
+      <main class="main">
+        <div class="main-header" id="main-header">
+          <div class="empty-state">Select a set from the sidebar</div>
+        </div>
+        <div class="parts-grid" id="parts-grid"></div>
+      </main>
+    </div>
+    <footer>&copy; 2026 William Kapke &bull; Data provided by <a href="https://www.bricklink.com" target="_blank">Bricklink</a></footer>
+
+    <script>
+      const STORAGE_KEY = "lego_inventory";
+      let inventory = {};
+      let userData = {};
+      let selectedSetId = null;
+      let colors = {};
+
+      function loadUserData() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          userData = stored ? JSON.parse(stored) : {};
+        } catch {
+          userData = {};
+        }
+      }
+
+      function saveUserData() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
+      }
+
+      function getPartKey(part) {
+        return part.colorId ? `${part.partNum}_${part.colorId}` : part.partNum;
+      }
+
+      function isLightColor(hex) {
+        if (!hex) return false;
+        const rgb = parseInt(hex.slice(1), 16);
+        const r = (rgb >> 16) & 0xff;
+        const g = (rgb >> 8) & 0xff;
+        const b = rgb & 0xff;
+        // Calculate luminance
+        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        return luminance > 0.6;
+      }
+
+      function getHaveCount(setId, partKey) {
+        return userData[setId]?.parts?.[partKey]?.have || 0;
+      }
+
+      function setHaveCount(setId, partKey, count) {
+        if (!userData[setId]) {
+          userData[setId] = { parts: {} };
+        }
+        if (!userData[setId].parts) {
+          userData[setId].parts = {};
+        }
+        userData[setId].parts[partKey] = { have: count };
+        saveUserData();
+      }
+
+      async function init() {
+        loadUserData();
+
+        const [inventoryRes, colorsRes] = await Promise.all([
+          fetch("set-inventory.json"),
+          fetch("bricklink-colors.json"),
+        ]);
+        inventory = await inventoryRes.json();
+        colors = await colorsRes.json();
+
+        renderSetList();
+
+        // Restore last selected or pick first
+        const lastSet = localStorage.getItem("lastInventorySet");
+        const setIds = Object.keys(inventory);
+        if (lastSet && inventory[lastSet]) {
+          selectSet(lastSet);
+        } else if (setIds.length > 0) {
+          selectSet(setIds[0]);
+        }
+      }
+
+      function renderSetList() {
+        const list = document.getElementById("set-list");
+        const setIds = Object.keys(inventory);
+
+        list.innerHTML = setIds.map((setId) => {
+          const set = inventory[setId];
+          return `
+            <li class="set-item ${selectedSetId === setId ? 'active' : ''}" data-set-id="${setId}">
+              <img src="${set.image}" alt="">
+              <div class="set-item-info">
+                <h3>${set.name}</h3>
+                <span>${setId}</span>
+              </div>
+            </li>
+          `;
+        }).join("");
+
+        list.querySelectorAll(".set-item").forEach((el) => {
+          el.addEventListener("click", () => {
+            selectSet(el.dataset.setId);
+          });
+        });
+      }
+
+      function selectSet(setId) {
+        selectedSetId = setId;
+        localStorage.setItem("lastInventorySet", setId);
+
+        // Update sidebar active state
+        document.querySelectorAll(".set-item").forEach((el) => {
+          el.classList.toggle("active", el.dataset.setId === setId);
+        });
+
+        renderMainContent();
+      }
+
+      function calculateProgress(setId) {
+        const set = inventory[setId];
+        if (!set) return { complete: 0, total: 0 };
+
+        let complete = 0;
+        let total = 0;
+
+        for (const part of set.parts) {
+          const needed = parseInt(part.quantity) || 1;
+          const have = getHaveCount(setId, getPartKey(part));
+          total += needed;
+          complete += Math.min(have, needed);
+        }
+
+        return { complete, total };
+      }
+
+      function renderMainContent() {
+        const set = inventory[selectedSetId];
+        if (!set) return;
+
+        const { complete, total } = calculateProgress(selectedSetId);
+        const pct = total > 0 ? Math.round((complete / total) * 100) : 0;
+
+        const header = document.getElementById("main-header");
+        header.innerHTML = `
+          <img src="${set.image}" alt="">
+          <div class="main-header-info">
+            <h2>${set.name}</h2>
+            <p>${selectedSetId} &bull; ${set.parts.length} unique parts</p>
+            <div class="progress-bar">
+              <div class="progress-bar-fill" style="width: ${pct}%"></div>
+            </div>
+            <p style="margin-top: 4px; font-size: 12px;">${complete} / ${total} parts (${pct}%)</p>
+          </div>
+        `;
+
+        renderPartsGrid();
+      }
+
+      function renderPartsGrid() {
+        const set = inventory[selectedSetId];
+        const grid = document.getElementById("parts-grid");
+
+        grid.innerHTML = set.parts.map((part) => {
+          const partKey = getPartKey(part);
+          const needed = parseInt(part.quantity) || 1;
+          const have = getHaveCount(selectedSetId, partKey);
+          const isComplete = have >= needed;
+
+          const color = colors[part.colorId] || { name: "Unknown", rgb: "#888" };
+          const textColor = isLightColor(color.rgb) ? "#333" : "#fff";
+
+          return `
+            <div class="part-card ${isComplete ? 'complete' : ''}" data-part-key="${partKey}">
+              <div class="part-card-color" style="background: ${color.rgb || '#888'}; color: ${textColor}; text-shadow: none;">
+                ${color.name}
+              </div>
+              <div class="part-card-image">
+                <a href="${part.partUrl}" target="_blank">
+                  <img src="${part.thumbnail}" alt="${part.description}">
+                </a>
+                <div class="part-card-checkmark">&#10003;</div>
+              </div>
+              <div class="part-card-info">
+                <h4>${part.description || part.partNum}</h4>
+                <div class="part-card-controls">
+                  <span>Have ${have} of ${needed}</span>
+                  <div class="part-card-buttons">
+                    <button class="btn-minus" data-part-key="${partKey}">-</button>
+                    <button class="btn-plus" data-part-key="${partKey}">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        // Add event listeners
+        grid.querySelectorAll(".btn-plus").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const partKey = btn.dataset.partKey;
+            const current = getHaveCount(selectedSetId, partKey);
+            setHaveCount(selectedSetId, partKey, current + 1);
+            renderMainContent();
+          });
+        });
+
+        grid.querySelectorAll(".btn-minus").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const partKey = btn.dataset.partKey;
+            const current = getHaveCount(selectedSetId, partKey);
+            if (current > 0) {
+              setHaveCount(selectedSetId, partKey, current - 1);
+              renderMainContent();
+            }
+          });
+        });
+      }
+
+      init();
+    </script>
+  </body>
+</html>

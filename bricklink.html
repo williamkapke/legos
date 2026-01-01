@@ -17,12 +17,22 @@
         min-height: 100vh;
         padding: 40px 20px;
       }
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        max-width: 1400px;
+        margin: 0 auto 24px;
+      }
+      .header-content {
+        flex: 1;
+      }
       h1 {
         text-align: center;
         font-size: 28px;
         font-weight: 600;
-        margin-bottom: 32px;
         color: #333;
+        margin: 0 0 16px 0;
       }
       .grid {
         display: grid;
@@ -30,6 +40,25 @@
         gap: 20px;
         max-width: 1400px;
         margin: 0 auto;
+      }
+      .grid.large {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+      }
+      .grid.large .card h3 {
+        font-size: 18px;
+        padding: 12px 18px;
+        margin-bottom: 14px;
+      }
+      .grid.large .parts-icon {
+        width: 32px;
+        height: 32px;
+        bottom: 12px;
+        right: 12px;
+      }
+      .grid.large .parts-icon svg {
+        width: 18px;
+        height: 18px;
       }
       .card {
         display: flex;
@@ -79,10 +108,212 @@
       footer a {
         color: #888;
       }
+      .qr-code {
+        background: #fff;
+        padding: 4px;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
+      }
+      .qr-code img {
+        display: block;
+      }
+      .search-row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .search-input {
+        flex: 1;
+        padding: 12px 16px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .search-input:focus {
+        border-color: #2196f3;
+      }
+      .size-toggle {
+        padding: 10px 14px;
+        font-size: 14px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background: #fff;
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s;
+        white-space: nowrap;
+      }
+      .size-toggle:hover {
+        border-color: #2196f3;
+      }
+      .size-toggle.active {
+        background: #2196f3;
+        border-color: #2196f3;
+        color: #fff;
+      }
+      .card.hidden {
+        display: none;
+      }
+      .card {
+        position: relative;
+      }
+      .parts-icon {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+      }
+      .parts-icon:hover {
+        opacity: 1;
+      }
+      .parts-icon svg {
+        width: 14px;
+        height: 14px;
+        stroke: #fff;
+      }
+      .popover {
+        display: none;
+        position: fixed;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        padding: 12px;
+        min-width: 300px;
+        max-width: 450px;
+        z-index: 1000;
+      }
+      .popover.visible {
+        display: block;
+      }
+      .popover h4 {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .popover table {
+        border-collapse: collapse;
+        font-size: 12px;
+        width: 100%;
+      }
+      .popover td {
+        padding: 6px 4px;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+      }
+      .popover tr:last-child td {
+        border-bottom: none;
+      }
+      .popover .filter-btn {
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+        width: 16px;
+        height: 16px;
+      }
+      .popover .filter-btn:hover {
+        opacity: 1;
+      }
+      .popover .part-thumb {
+        width: 40px;
+        height: 30px;
+        object-fit: contain;
+      }
+      .popover .part-num {
+        font-family: monospace;
+        color: #2196f3;
+        white-space: nowrap;
+      }
+      .popover .part-desc {
+        color: #555;
+      }
+      .popover .no-parts {
+        color: #999;
+        font-style: italic;
+      }
+
+      /* Mobile styles */
+      @media (max-width: 600px) {
+        body {
+          padding: 20px 12px;
+        }
+        .header {
+          margin-bottom: 20px;
+        }
+        h1 {
+          font-size: 18px;
+        }
+        .search-input {
+          padding: 10px 12px;
+          font-size: 16px; /* Prevents zoom on iOS */
+        }
+        .grid {
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+          gap: 12px;
+        }
+        .card h3 {
+          font-size: 11px;
+          padding: 6px 8px;
+          margin-bottom: 6px;
+        }
+        .parts-icon {
+          width: 28px;
+          height: 28px;
+          bottom: 6px;
+          right: 6px;
+        }
+        .popover {
+          min-width: 280px;
+          max-width: calc(100vw - 24px);
+          padding: 10px;
+          max-height: 60vh;
+          overflow-y: auto;
+        }
+        .popover h4 {
+          font-size: 11px;
+        }
+        .popover table {
+          font-size: 11px;
+        }
+        .popover .part-thumb {
+          width: 32px;
+          height: 24px;
+        }
+        .popover .filter-btn {
+          width: 20px;
+          height: 20px;
+        }
+        footer {
+          font-size: 10px;
+          padding: 6px 10px;
+        }
+      }
     </style>
   </head>
   <body>
-    <h1>LEGO Friends Minidolls - Bricklink</h1>
+    <div class="header">
+      <div class="header-content">
+        <h1>LEGO Friends Minidolls - Bricklink</h1>
+        <div class="search-row">
+          <input type="text" id="search" class="search-input" placeholder="Search by name, description, or part number..." autofocus>
+          <button id="sizeToggle" class="size-toggle">2x</button>
+        </div>
+      </div>
+      <div class="qr-code" id="qrcode"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
     <div class="grid" id="grid"></div>
 
     <script>
@@ -101,6 +332,29 @@
         return nameColorMap.get(name);
       }
 
+      function getSearchableText(doll) {
+        // Combine all searchable fields: id, name, description, and part numbers
+        const parts = [doll.id, doll.name, doll.description];
+        if (doll.parts) {
+          for (const part of doll.parts) {
+            parts.push(part.partNum, part.description);
+          }
+        }
+        return parts.filter(Boolean).join(" ").toLowerCase();
+      }
+
+      function filterCards(searchValue) {
+        const terms = searchValue.toLowerCase().split(/\s+/).filter(Boolean);
+        const cards = document.querySelectorAll(".card");
+
+        cards.forEach((card) => {
+          const searchText = card.dataset.search;
+          // All terms must match somewhere in the searchable text
+          const matches = terms.length === 0 || terms.every(term => searchText.includes(term));
+          card.classList.toggle("hidden", !matches);
+        });
+      }
+
       async function init() {
         const res = await fetch("minidolls.bricklink.json");
         const minidolls = await res.json();
@@ -114,23 +368,166 @@
 
         const nameColorMap = new Map();
         const grid = document.getElementById("grid");
-        grid.innerHTML = minidolls.map((doll) => {
+        const partsIconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>`;
+        grid.innerHTML = minidolls.map((doll, index) => {
           const name = doll.name || doll.id;
           const color = getColorForName(name, nameColorMap);
           const url = `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${doll.id}#T=P`;
+          const searchText = getSearchableText(doll);
           return `
-            <div class="card">
+            <div class="card" data-search="${searchText}" data-index="${index}">
               <h3 style="background: ${color}">${name}</h3>
               <a href="${url}" target="_blank">
                 <img src="${doll.image}" alt="${doll.description}" loading="lazy">
               </a>
+              <div class="parts-icon" data-index="${index}">${partsIconSvg}</div>
             </div>
           `;
         }).join("");
+
+        // Set up search and size toggle
+        const searchInput = document.getElementById("search");
+        const qrcodeEl = document.getElementById("qrcode");
+        const sizeToggle = document.getElementById("sizeToggle");
+
+        function updateUrl() {
+          const url = new URL(window.location);
+          const searchValue = searchInput.value;
+          const isLarge = grid.classList.contains("large");
+
+          if (searchValue) {
+            url.searchParams.set("q", searchValue);
+          } else {
+            url.searchParams.delete("q");
+          }
+
+          if (isLarge) {
+            url.searchParams.set("size", "large");
+          } else {
+            url.searchParams.delete("size");
+          }
+
+          history.replaceState(null, "", url);
+          updateQRCode();
+        }
+
+        function updateQRCode() {
+          const qr = qrcode(0, "M");
+          qr.addData(window.location.href);
+          qr.make();
+          qrcodeEl.innerHTML = qr.createImgTag(3, 0);
+        }
+
+        function handleSearch(value) {
+          filterCards(value);
+          updateUrl();
+        }
+
+        function toggleSize() {
+          grid.classList.toggle("large");
+          sizeToggle.classList.toggle("active");
+          updateUrl();
+        }
+
+        // Load settings from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialSearch = urlParams.get("q") || "";
+        const initialSize = urlParams.get("size");
+
+        if (initialSearch) {
+          searchInput.value = initialSearch;
+          filterCards(initialSearch);
+        }
+        if (initialSize === "large") {
+          grid.classList.add("large");
+          sizeToggle.classList.add("active");
+        }
+        updateQRCode();
+
+        searchInput.addEventListener("keyup", () => handleSearch(searchInput.value));
+        sizeToggle.addEventListener("click", toggleSize);
+
+        // Set up popover
+        const popover = document.getElementById("popover");
+        const filterIcon = `<svg class="filter-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>`;
+        let currentCard = null;
+
+        function showPopover(index, anchorEl) {
+          const doll = minidolls[index];
+          const partsHtml = doll.parts && doll.parts.length > 0
+            ? `<table>${doll.parts.map(p => `<tr>
+                <td><span data-partnum="${p.partNum}">${filterIcon}</span></td>
+                <td><img class="part-thumb" src="${p.image}" alt=""></td>
+                <td><span class="part-num">${p.partNum}</span></td>
+                <td><span class="part-desc">${p.description}</span></td>
+              </tr>`).join("")}</table>`
+            : `<p class="no-parts">No parts data</p>`;
+          popover.innerHTML = `<h4>Parts</h4>${partsHtml}`;
+
+          const rect = anchorEl.getBoundingClientRect();
+          popover.style.left = `${rect.left + rect.width / 2}px`;
+          popover.style.top = `${rect.top - 8}px`;
+          popover.style.transform = "translate(-50%, -100%)";
+          popover.classList.add("visible");
+        }
+
+        // Parts icon hover handlers (desktop)
+        grid.addEventListener("mouseenter", (e) => {
+          const partsIcon = e.target.closest(".parts-icon");
+          if (!partsIcon) return;
+          currentCard = partsIcon.closest(".card");
+          showPopover(partsIcon.dataset.index, partsIcon);
+        }, true);
+
+        grid.addEventListener("mouseleave", (e) => {
+          const partsIcon = e.target.closest(".parts-icon");
+          if (!partsIcon) return;
+          setTimeout(() => {
+            if (!popover.matches(":hover")) {
+              popover.classList.remove("visible");
+              currentCard = null;
+            }
+          }, 100);
+        }, true);
+
+        popover.addEventListener("mouseleave", () => {
+          popover.classList.remove("visible");
+          currentCard = null;
+        });
+
+        // Touch support (mobile)
+        grid.addEventListener("click", (e) => {
+          const partsIcon = e.target.closest(".parts-icon");
+          if (!partsIcon) return;
+          e.preventDefault();
+          e.stopPropagation();
+          currentCard = partsIcon.closest(".card");
+          showPopover(partsIcon.dataset.index, partsIcon);
+        });
+
+        // Close popover when tapping outside (mobile)
+        document.addEventListener("click", (e) => {
+          if (!popover.contains(e.target) && !e.target.closest(".parts-icon")) {
+            popover.classList.remove("visible");
+            currentCard = null;
+          }
+        });
+
+        // Filter icon click handler
+        popover.addEventListener("click", (e) => {
+          const filterBtn = e.target.closest("[data-partnum]");
+          if (!filterBtn) return;
+          const partNum = filterBtn.dataset.partnum;
+          searchInput.value = partNum;
+          handleSearch(partNum);
+          popover.classList.remove("visible");
+          searchInput.focus();
+        });
       }
 
       init();
     </script>
     <footer>&copy; 2026 William Kapke &bull; Data provided by <a href="https://www.bricklink.com" target="_blank">Bricklink</a></footer>
+    <div id="popover" class="popover"></div>
   </body>
 </html>

@@ -380,6 +380,11 @@
     "https://cdn.rebrickable.com/media/parts/ldraw/297/33322.png",
     "https://cdn.rebrickable.com/media/parts/photos/297/33322-297-d8bd7a79-cfd5-43e3-bc03-41f1a06bbf25.jpg"
   ],
+  "34316": [
+    "https://cdn.rebrickable.com/media/parts/elements/6353442.jpg",
+    "https://cdn.rebrickable.com/media/parts/ldraw/-1/34316.png",
+    "https://cdn.rebrickable.com/media/parts/photos/28/34316-28-8ab61ed8-a6ff-442e-86f7-f03b0e2c4956.jpg"
+  ],
   "35182": [
     "https://cdn.rebrickable.com/media/parts/elements/6209868.jpg",
     "https://cdn.rebrickable.com/media/parts/photos/308/35182-308-beb4dfdd-5183-4345-8f71-695946e849e9.jpg"
@@ -749,10 +754,18 @@
     "https://cdn.rebrickable.com/media/parts/ldraw/70/99240.png",
     "https://cdn.rebrickable.com/media/parts/photos/70/99240-70-45c5b275-ce9c-4fba-b08a-0f014eee9c52.jpg"
   ],
+  "99244": [
+    "https://cdn.rebrickable.com/media/parts/elements/6374341.jpg",
+    "https://cdn.rebrickable.com/media/parts/ldraw/15/99244.png",
+    "https://cdn.rebrickable.com/media/parts/photos/15/99244-15-8714e4bf-f53f-41fc-913f-b6272c956e5f.jpg"
+  ],
   "99930": [
     "https://cdn.rebrickable.com/media/parts/elements/4653226.jpg",
     "https://cdn.rebrickable.com/media/parts/ldraw/0/99930.png",
     "https://cdn.rebrickable.com/media/parts/photos/0/99930-0-0afdd423-985b-42c2-ba25-ebc1e56097a9.jpg"
+  ],
+  "112537": [
+    "https://cdn.rebrickable.com/media/parts/elements/6540019.jpg"
   ],
   "92198pr0006": [
     "https://cdn.rebrickable.com/media/parts/elements/6017024.jpg",
@@ -4715,5 +4728,113 @@
   ],
   "11408c02pr0015": [
     "https://cdn.rebrickable.com/media/parts/elements/6546367.jpg"
+  ],
+  "16530c01pr0005": [
+    "https://cdn.rebrickable.com/media/parts/elements/6546449.jpg"
+  ],
+  "11408c07pr0011": [
+    "https://cdn.rebrickable.com/media/parts/elements/6546442.jpg"
+  ],
+  "5789c01pr0007": [
+    "https://cdn.rebrickable.com/media/parts/elements/6542282.jpg"
+  ],
+  "92198pr0074": [
+    "https://cdn.rebrickable.com/media/parts/elements/6534808.jpg"
+  ],
+  "92456c03pr0013": [
+    "https://cdn.rebrickable.com/media/parts/elements/6541162.jpg"
+  ],
+  "92456c16pr0012": [
+    "https://cdn.rebrickable.com/media/parts/elements/6541161.jpg"
+  ],
+  "2241c01pr0032": [
+    "https://cdn.rebrickable.com/media/parts/elements/6542281.jpg"
+  ],
+  "2241c01pr0031": [
+    "https://cdn.rebrickable.com/media/parts/elements/6542279.jpg"
+  ],
+  "92456c01pr0131": [
+    "https://cdn.rebrickable.com/media/parts/elements/6541159.jpg"
+  ],
+  "5789c01pr0006": [
+    "https://cdn.rebrickable.com/media/parts/elements/6542280.jpg"
+  ],
+  "11408c06pr0010": [
+    "https://cdn.rebrickable.com/media/parts/elements/6541160.jpg"
+  ],
+  "92198pr0078": [
+    "https://cdn.rebrickable.com/media/parts/elements/6546544.jpg"
+  ],
+  "92456c01pr0129": [
+    "https://cdn.rebrickable.com/media/parts/elements/6550595.jpg"
+  ],
+  "5789c01pr0008": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547233.jpg"
+  ],
+  "92198pr0076": [
+    "https://cdn.rebrickable.com/media/parts/elements/6539434.jpg"
+  ],
+  "92456c21pr0001": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547392.jpg"
+  ],
+  "28649pr0020": [
+    "https://cdn.rebrickable.com/media/parts/elements/6539431.jpg"
+  ],
+  "92815c07pr0002": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547248.jpg"
+  ],
+  "2268c01pr0018": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547250.jpg"
+  ],
+  "11408c02pr0016": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547236.jpg"
+  ],
+  "1611pr0002": [
+    "https://cdn.rebrickable.com/media/parts/elements/6543136.jpg"
+  ],
+  "298c05": [
+    "https://cdn.rebrickable.com/media/parts/elements/4226285.jpg",
+    "https://cdn.rebrickable.com/media/parts/ldraw/71/73587p02.png",
+    "https://cdn.rebrickable.com/media/parts/photos/71/298c05-71-69fb950b-9be3-43e4-a934-b0a013796415.jpg"
+  ],
+  "11408c06pr0011": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547188.jpg"
+  ],
+  "2277c01pr0019": [
+    "https://cdn.rebrickable.com/media/parts/elements/6474289.jpg"
+  ],
+  "2277c01pr0020": [
+    "https://cdn.rebrickable.com/media/parts/elements/6546878.jpg"
+  ],
+  "92198pr0077": [
+    "https://cdn.rebrickable.com/media/parts/elements/6543124.jpg"
+  ],
+  "92456c06pr0016": [
+    "https://cdn.rebrickable.com/media/parts/elements/6546865.jpg"
+  ],
+  "36198c01pr0008": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547418.jpg"
+  ],
+  "92456c03pr0014": [
+    "https://cdn.rebrickable.com/media/parts/elements/6546965.jpg"
+  ],
+  "49663pat0004": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547158.jpg"
+  ],
+  "107096pat0001": [
+    "https://cdn.rebrickable.com/media/parts/elements/6483114.jpg"
+  ],
+  "2241c01pr0033": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547420.jpg"
+  ],
+  "92198pr0072": [
+    "https://cdn.rebrickable.com/media/parts/elements/6537797.jpg"
+  ],
+  "92456c12pr0014": [
+    "https://cdn.rebrickable.com/media/parts/elements/6547171.jpg"
+  ],
+  "92456c06pr0017": [
+    "https://cdn.rebrickable.com/media/parts/elements/6550070.jpg",
+    "https://cdn.rebrickable.com/media/parts/photos/1089/92456c06pr0017-1089-3962ae84-d58f-4478-9ad1-22185cc3b3ad.jpg"
   ]
 }
