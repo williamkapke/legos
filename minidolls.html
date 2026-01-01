@@ -485,6 +485,47 @@
         text-decoration: underline;
       }
 
+      /* Owned checkbox */
+      .owned-checkbox {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        z-index: 10;
+        appearance: none;
+        -webkit-appearance: none;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        transition: all 0.2s;
+      }
+      .owned-checkbox::before {
+        content: "+";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: 18px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.4);
+        line-height: 1;
+      }
+      .owned-checkbox:checked {
+        background: #3a8f3a;
+        border-color: #3a8f3a;
+      }
+      .owned-checkbox:checked::before {
+        content: "\2713";
+        color: white;
+        font-size: 16px;
+      }
+      .owned-checkbox:hover {
+        border-color: #3a8f3a;
+      }
+
       footer {
         position: fixed;
         bottom: 0;
@@ -544,6 +585,37 @@
       let currentView = "minidolls";
       let partToMinifigs = {}; // Maps part_num to array of minifigs that use it
       let partImages = {}; // Maps part_num to array of image URLs
+      let ownedData = {}; // localStorage overrides for owned status
+
+      const OWNED_STORAGE_KEY = "minidolls_owned";
+
+      function loadOwnedData() {
+        try {
+          const stored = localStorage.getItem(OWNED_STORAGE_KEY);
+          ownedData = stored ? JSON.parse(stored) : {};
+        } catch {
+          ownedData = {};
+        }
+      }
+
+      function saveOwnedData() {
+        localStorage.setItem(OWNED_STORAGE_KEY, JSON.stringify(ownedData));
+      }
+
+      function isOwned(setNum) {
+        // localStorage overrides minidolls.json data
+        if (ownedData[setNum] !== undefined) {
+          return ownedData[setNum].owned;
+        }
+        // Check if it comes from the minidolls.json data
+        const doll = minidolls.find(d => d.set_num === setNum);
+        return doll?.owned || false;
+      }
+
+      function setOwned(setNum, owned) {
+        ownedData[setNum] = { owned };
+        saveOwnedData();
+      }
 
       function extractName(fullName) {
         // Try " - " first, then fall back to first comma
@@ -591,6 +663,8 @@
       }
 
       async function init() {
+        loadOwnedData();
+
         const [minidollsRes, partImagesRes] = await Promise.all([
           fetch("minidolls.json"),
           fetch("part-images.json"),
@@ -783,8 +857,10 @@
           const partsBadge = doll.parts
             ? `<span class="parts-badge" data-parts='${partsData.replace(/'/g, "&#39;")}'>${doll.num_parts} parts</span>`
             : `<span>${doll.num_parts} parts</span>`;
+          const owned = isOwned(doll.set_num);
           return `
           <div class="minidoll-card">
+            <input type="checkbox" class="owned-checkbox" data-set-num="${doll.set_num}" ${owned ? "checked" : ""} title="Owned">
             <a href="${doll.set_url}" target="_blank">
               <img src="${doll.set_img_url || ""}" alt="${doll.name}" loading="lazy" onerror="this.style.display='none'">
             </a>
@@ -973,6 +1049,12 @@
             showPartsPopup(badge);
           });
           badge.addEventListener("mouseleave", hidePopup);
+        });
+        document.querySelectorAll(".owned-checkbox").forEach((checkbox) => {
+          checkbox.addEventListener("change", (e) => {
+            const setNum = e.target.dataset.setNum;
+            setOwned(setNum, e.target.checked);
+          });
         });
       }
 

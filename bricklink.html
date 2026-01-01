@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO Friends Minidolls - Bricklink</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
+      h1 {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 32px;
+        color: #333;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .card h3 {
+        font-size: 13px;
+        font-weight: 600;
+        color: #fff;
+        padding: 8px 14px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+      }
+      .card a {
+        display: block;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+      }
+      .card a:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+      .card img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 8px 16px;
+        font-size: 11px;
+        color: #666;
+        background: rgba(245, 245, 245, 0.95);
+        border-radius: 8px 0 0 0;
+      }
+      footer a {
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>LEGO Friends Minidolls - Bricklink</h1>
+    <div class="grid" id="grid"></div>
+
+    <script>
+      const colors = [
+        "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3",
+        "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a",
+        "#cddc39", "#ff9800", "#ff5722", "#795548", "#607d8b",
+        "#f44336", "#e040fb", "#7c4dff", "#448aff", "#18ffff",
+      ];
+
+      function getColorForName(name, nameColorMap) {
+        if (!nameColorMap.has(name)) {
+          const colorIndex = nameColorMap.size % colors.length;
+          nameColorMap.set(name, colors[colorIndex]);
+        }
+        return nameColorMap.get(name);
+      }
+
+      async function init() {
+        const res = await fetch("minidolls.bricklink.json");
+        const minidolls = await res.json();
+
+        // Sort by name
+        minidolls.sort((a, b) => {
+          const nameA = (a.name || a.id).toLowerCase();
+          const nameB = (b.name || b.id).toLowerCase();
+          return nameA.localeCompare(nameB);
+        });
+
+        const nameColorMap = new Map();
+        const grid = document.getElementById("grid");
+        grid.innerHTML = minidolls.map((doll) => {
+          const name = doll.name || doll.id;
+          const color = getColorForName(name, nameColorMap);
+          const url = `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${doll.id}#T=P`;
+          return `
+            <div class="card">
+              <h3 style="background: ${color}">${name}</h3>
+              <a href="${url}" target="_blank">
+                <img src="${doll.image}" alt="${doll.description}" loading="lazy">
+              </a>
+            </div>
+          `;
+        }).join("");
+      }
+
+      init();
+    </script>
+    <footer>&copy; 2026 William Kapke &bull; Data provided by <a href="https://www.bricklink.com" target="_blank">Bricklink</a></footer>
+  </body>
+</html>
