@@ -69,7 +69,7 @@
         font-size: 13px;
         font-weight: 600;
         color: #fff;
-        padding: 8px 14px;
+        padding: 8px 4px;
         border-radius: 8px;
         margin-bottom: 10px;
         text-align: center;
@@ -84,6 +84,7 @@
         transition: transform 0.2s, box-shadow 0.2s;
         width: 100%;
         aspect-ratio: 3 / 4;
+        position: relative;
       }
       .card a:hover {
         transform: translateY(-4px);
@@ -94,6 +95,8 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
+        -webkit-user-drag: none;
+        user-drag: none;
       }
       footer {
         position: fixed;
@@ -153,11 +156,101 @@
         border-color: #2196f3;
         color: #fff;
       }
+      .filters {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+        font-size: 13px;
+      }
+      .filters label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+        color: #666;
+      }
+      .filters input[type="checkbox"] {
+        cursor: pointer;
+      }
+      .item-count {
+        color: #999;
+        margin-left: auto;
+      }
+      .owned-badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 20px;
+        height: 20px;
+        background: #4caf50;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .owned-badge svg {
+        width: 12px;
+        height: 12px;
+        stroke: #fff;
+        stroke-width: 3;
+      }
+      .id-pill {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-size: 10px;
+        font-family: monospace;
+        padding: 3px 6px;
+        border-radius: 4px;
+        user-select: text;
+        cursor: text;
+        z-index: 10;
+      }
+      .note-icon {
+        position: absolute;
+        bottom: 6px;
+        left: 6px;
+        width: 22px;
+        height: 22px;
+        background: #ffc107;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .note-icon svg {
+        width: 14px;
+        height: 14px;
+        stroke: #000;
+        fill: none;
+      }
+      .note-tooltip {
+        display: none;
+        position: absolute;
+        bottom: 32px;
+        left: 6px;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        padding: 8px 10px;
+        font-size: 12px;
+        color: #333;
+        max-width: 200px;
+        z-index: 100;
+      }
+      .note-icon:hover + .note-tooltip,
+      .note-tooltip:hover {
+        display: block;
+      }
       .card.hidden {
         display: none;
       }
-      .card {
+      .card-content {
         position: relative;
+        width: 100%;
       }
       .parts-icon {
         position: absolute;
@@ -310,6 +403,10 @@
           <input type="text" id="search" class="search-input" placeholder="Search by name, description, or part number..." autofocus>
           <button id="sizeToggle" class="size-toggle">2x</button>
         </div>
+        <div class="filters">
+          <label><input type="checkbox" id="ownedFilter"> owned</label>
+          <span id="itemCount" class="item-count"></span>
+        </div>
       </div>
       <div class="qr-code" id="qrcode"></div>
     </div>
@@ -343,16 +440,23 @@
         return parts.filter(Boolean).join(" ").toLowerCase();
       }
 
-      function filterCards(searchValue) {
+      function filterCards(searchValue, ownedOnly = false) {
         const terms = searchValue.toLowerCase().split(/\s+/).filter(Boolean);
         const cards = document.querySelectorAll(".card");
+        let visibleCount = 0;
 
         cards.forEach((card) => {
           const searchText = card.dataset.search;
+          const isOwned = card.dataset.owned === "true";
           // All terms must match somewhere in the searchable text
-          const matches = terms.length === 0 || terms.every(term => searchText.includes(term));
-          card.classList.toggle("hidden", !matches);
+          const matchesSearch = terms.length === 0 || terms.every(term => searchText.includes(term));
+          const matchesOwned = !ownedOnly || isOwned;
+          const visible = matchesSearch && matchesOwned;
+          card.classList.toggle("hidden", !visible);
+          if (visible) visibleCount++;
         });
+
+        document.getElementById("itemCount").textContent = `${visibleCount} of ${cards.length}`;
       }
 
       async function init() {
@@ -369,31 +473,42 @@
         const nameColorMap = new Map();
         const grid = document.getElementById("grid");
         const partsIconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>`;
+        const checkmarkSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6L9 17l-5-5"/></svg>`;
+        const noteSvg = `<svg viewBox="0 0 24 24" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>`;
         grid.innerHTML = minidolls.map((doll, index) => {
           const name = doll.name || doll.id;
           const color = getColorForName(name, nameColorMap);
           const url = `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${doll.id}#T=P`;
           const searchText = getSearchableText(doll);
+          const ownedBadge = doll.owned ? `<div class="owned-badge">${checkmarkSvg}</div>` : '';
+          const noteHtml = doll.note ? `<div class="note-icon">${noteSvg}</div><div class="note-tooltip">${doll.note}</div>` : '';
           return `
-            <div class="card" data-search="${searchText}" data-index="${index}">
+            <div class="card" data-search="${searchText}" data-index="${index}" data-owned="${doll.owned ? 'true' : 'false'}">
               <h3 style="background: ${color}">${name}</h3>
-              <a href="${url}" target="_blank">
-                <img src="${doll.image}" alt="${doll.description}" loading="lazy">
-              </a>
-              <div class="parts-icon" data-index="${index}">${partsIconSvg}</div>
+              <div class="card-content">
+                <span class="id-pill">${doll.id}</span>
+                <a href="${url}" target="_blank">
+                  ${ownedBadge}
+                  ${noteHtml}
+                  <img src="${doll.image}" alt="${doll.description}" loading="lazy" draggable="false">
+                </a>
+                <div class="parts-icon" data-index="${index}">${partsIconSvg}</div>
+              </div>
             </div>
           `;
         }).join("");
 
-        // Set up search and size toggle
+        // Set up search and filters
         const searchInput = document.getElementById("search");
         const qrcodeEl = document.getElementById("qrcode");
         const sizeToggle = document.getElementById("sizeToggle");
+        const ownedFilter = document.getElementById("ownedFilter");
 
         function updateUrl() {
           const url = new URL(window.location);
           const searchValue = searchInput.value;
           const isLarge = grid.classList.contains("large");
+          const ownedOnly = ownedFilter.checked;
 
           if (searchValue) {
             url.searchParams.set("q", searchValue);
@@ -407,6 +522,12 @@
             url.searchParams.delete("size");
           }
 
+          if (ownedOnly) {
+            url.searchParams.set("owned", "1");
+          } else {
+            url.searchParams.delete("owned");
+          }
+
           history.replaceState(null, "", url);
           updateQRCode();
         }
@@ -418,8 +539,8 @@
           qrcodeEl.innerHTML = qr.createImgTag(3, 0);
         }
 
-        function handleSearch(value) {
-          filterCards(value);
+        function applyFilters() {
+          filterCards(searchInput.value, ownedFilter.checked);
           updateUrl();
         }
 
@@ -433,19 +554,24 @@
         const urlParams = new URLSearchParams(window.location.search);
         const initialSearch = urlParams.get("q") || "";
         const initialSize = urlParams.get("size");
+        const initialOwned = urlParams.get("owned");
 
         if (initialSearch) {
           searchInput.value = initialSearch;
-          filterCards(initialSearch);
         }
         if (initialSize === "large") {
           grid.classList.add("large");
           sizeToggle.classList.add("active");
         }
+        if (initialOwned === "1") {
+          ownedFilter.checked = true;
+        }
+        filterCards(initialSearch, ownedFilter.checked);
         updateQRCode();
 
-        searchInput.addEventListener("keyup", () => handleSearch(searchInput.value));
+        searchInput.addEventListener("keyup", applyFilters);
         sizeToggle.addEventListener("click", toggleSize);
+        ownedFilter.addEventListener("change", applyFilters);
 
         // Set up popover
         const popover = document.getElementById("popover");
@@ -519,7 +645,7 @@
           if (!filterBtn) return;
           const partNum = filterBtn.dataset.partnum;
           searchInput.value = partNum;
-          handleSearch(partNum);
+          applyFilters();
           popover.classList.remove("visible");
           searchInput.focus();
         });
