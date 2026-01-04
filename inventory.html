@@ -125,12 +125,35 @@
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
         gap: 16px;
       }
+      .filter-controls {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .filter-controls label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .filter-controls input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+      }
       .part-card {
         background: #fff;
         border-radius: 12px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         overflow: hidden;
-        transition: opacity 0.3s, transform 0.2s;
+        transition: opacity 0.5s, transform 0.2s;
+      }
+      .part-card.fade-out {
+        opacity: 0;
+      }
+      .part-card.hidden {
+        display: none;
       }
       .part-card-color {
         padding: 6px 10px;
@@ -163,7 +186,7 @@
       }
       .part-card-image {
         position: relative;
-        aspect-ratio: 1;
+        height: 100px;
         background: #f9f9f9;
         display: flex;
         align-items: center;
@@ -282,6 +305,10 @@
         <div class="main-header" id="main-header">
           <div class="empty-state">Select a set from the sidebar</div>
         </div>
+        <div class="filter-controls" id="filter-controls" style="display: none;">
+          <label><input type="checkbox" id="filter-complete" checked> Complete</label>
+          <label><input type="checkbox" id="filter-incomplete" checked> Not Complete</label>
+        </div>
         <div class="parts-grid" id="parts-grid"></div>
       </main>
     </div>
@@ -293,6 +320,7 @@
       let userData = {};
       let selectedSetId = null;
       let colors = {};
+      let pendingFadeOuts = new Map(); // partKey -> timeoutId
 
       function loadUserData() {
         try {
@@ -347,6 +375,10 @@
         inventory = await inventoryRes.json();
         colors = await colorsRes.json();
 
+        // Set up filter checkbox listeners
+        document.getElementById("filter-complete").addEventListener("change", applyFilters);
+        document.getElementById("filter-incomplete").addEventListener("change", applyFilters);
+
         renderSetList();
 
         // Restore last selected or pick first
@@ -387,10 +419,17 @@
         selectedSetId = setId;
         localStorage.setItem("lastInventorySet", setId);
 
+        // Clear any pending fade-outs
+        pendingFadeOuts.forEach((timeoutId) => clearTimeout(timeoutId));
+        pendingFadeOuts.clear();
+
         // Update sidebar active state
         document.querySelectorAll(".set-item").forEach((el) => {
           el.classList.toggle("active", el.dataset.setId === setId);
         });
+
+        // Show filter controls
+        document.getElementById("filter-controls").style.display = "flex";
 
         renderMainContent();
       }
@@ -439,7 +478,16 @@
         const set = inventory[selectedSetId];
         const grid = document.getElementById("parts-grid");
 
-        grid.innerHTML = set.parts.map((part) => {
+        // Sort parts by color name, then by part number
+        const sortedParts = [...set.parts].sort((a, b) => {
+          const colorA = colors[a.colorId]?.name || "Unknown";
+          const colorB = colors[b.colorId]?.name || "Unknown";
+          const colorCmp = colorA.localeCompare(colorB);
+          if (colorCmp !== 0) return colorCmp;
+          return a.partNum.localeCompare(b.partNum);
+        });
+
+        grid.innerHTML = sortedParts.map((part) => {
           const partKey = getPartKey(part);
           const needed = parseInt(part.quantity) || 1;
           const have = getHaveCount(selectedSetId, partKey);
@@ -449,7 +497,7 @@
           const textColor = isLightColor(color.rgb) ? "#333" : "#fff";
 
           return `
-            <div class="part-card ${isComplete ? 'complete' : ''}" data-part-key="${partKey}">
+            <div class="part-card ${isComplete ? 'complete' : ''}" data-part-key="${partKey}" data-needed="${needed}">
               <div class="part-card-color" style="background: ${color.rgb || '#888'}; color: ${textColor}; text-shadow: none;">
                 ${color.name}
               </div>
@@ -479,8 +527,9 @@
             e.stopPropagation();
             const partKey = btn.dataset.partKey;
             const current = getHaveCount(selectedSetId, partKey);
-            setHaveCount(selectedSetId, partKey, current + 1);
-            renderMainContent();
+            const newCount = current + 1;
+            setHaveCount(selectedSetId, partKey, newCount);
+            updateCardState(partKey, newCount);
           });
         });
 
@@ -490,10 +539,84 @@
             const partKey = btn.dataset.partKey;
             const current = getHaveCount(selectedSetId, partKey);
             if (current > 0) {
-              setHaveCount(selectedSetId, partKey, current - 1);
-              renderMainContent();
+              const newCount = current - 1;
+              setHaveCount(selectedSetId, partKey, newCount);
+              updateCardState(partKey, newCount);
             }
           });
+        });
+
+        applyFilters();
+      }
+
+      function updateCardState(partKey, newCount) {
+        const card = document.querySelector(`.part-card[data-part-key="${partKey}"]`);
+        if (!card) return;
+
+        const needed = parseInt(card.dataset.needed) || 1;
+        const wasComplete = card.classList.contains("complete");
+        const isNowComplete = newCount >= needed;
+        const showComplete = document.getElementById("filter-complete").checked;
+
+        // Update the card's visual state
+        card.classList.toggle("complete", isNowComplete);
+
+        // Update the have count display
+        const countSpan = card.querySelector(".part-card-controls span");
+        if (countSpan) {
+          countSpan.textContent = `Have ${newCount} of ${needed}`;
+        }
+
+        // Update progress bar
+        updateProgressBar();
+
+        // Clear any pending fade-out for this card
+        if (pendingFadeOuts.has(partKey)) {
+          clearTimeout(pendingFadeOuts.get(partKey));
+          pendingFadeOuts.delete(partKey);
+          card.classList.remove("fade-out");
+        }
+
+        // Handle delayed fade-out when becoming complete and complete filter is off
+        if (!wasComplete && isNowComplete && !showComplete) {
+          const timeoutId = setTimeout(() => {
+            card.classList.add("fade-out");
+            setTimeout(() => {
+              card.classList.add("hidden");
+              pendingFadeOuts.delete(partKey);
+            }, 500);
+          }, 1000);
+          pendingFadeOuts.set(partKey, timeoutId);
+        }
+
+        // Handle showing card when becoming incomplete
+        if (wasComplete && !isNowComplete) {
+          card.classList.remove("fade-out", "hidden");
+        }
+      }
+
+      function updateProgressBar() {
+        const { complete, total } = calculateProgress(selectedSetId);
+        const pct = total > 0 ? Math.round((complete / total) * 100) : 0;
+        const progressFill = document.querySelector(".progress-bar-fill");
+        const progressText = document.querySelector(".main-header-info p:last-child");
+        if (progressFill) progressFill.style.width = `${pct}%`;
+        if (progressText) progressText.textContent = `${complete} / ${total} parts (${pct}%)`;
+      }
+
+      function applyFilters() {
+        const showComplete = document.getElementById("filter-complete").checked;
+        const showIncomplete = document.getElementById("filter-incomplete").checked;
+
+        // Clear any pending fade-outs
+        pendingFadeOuts.forEach((timeoutId) => clearTimeout(timeoutId));
+        pendingFadeOuts.clear();
+
+        document.querySelectorAll(".part-card").forEach((card) => {
+          const isComplete = card.classList.contains("complete");
+          const shouldShow = (isComplete && showComplete) || (!isComplete && showIncomplete);
+          card.classList.remove("fade-out");
+          card.classList.toggle("hidden", !shouldShow);
         });
       }
 
