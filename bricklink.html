@@ -210,8 +210,8 @@
       }
       .note-icon {
         position: absolute;
-        bottom: 6px;
-        left: 6px;
+        top: 32px;
+        right: 8px;
         width: 22px;
         height: 22px;
         background: #ffc107;
@@ -230,8 +230,8 @@
       .note-tooltip {
         display: none;
         position: absolute;
-        bottom: 32px;
-        left: 6px;
+        top: 56px;
+        right: 8px;
         background: #fff;
         border-radius: 6px;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
@@ -274,6 +274,7 @@
         width: 14px;
         height: 14px;
         stroke: #fff;
+        pointer-events: none;
       }
       .popover {
         display: none;
@@ -328,6 +329,13 @@
         font-family: monospace;
         color: #2196f3;
         white-space: nowrap;
+        text-decoration: none;
+      }
+      .popover .part-num:hover {
+        text-decoration: underline;
+      }
+      .popover a {
+        display: inline-block;
       }
       .popover .part-desc {
         color: #555;
@@ -335,6 +343,112 @@
       .popover .no-parts {
         color: #999;
         font-style: italic;
+      }
+      .variation-icon {
+        position: absolute;
+        bottom: 8px;
+        left: 8px;
+        width: 24px;
+        height: 24px;
+        background: rgba(33, 150, 243, 0.9);
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.85;
+        transition: opacity 0.2s;
+      }
+      .variation-icon:hover {
+        opacity: 1;
+      }
+      .variation-icon svg {
+        width: 16px;
+        height: 16px;
+        fill: #fff;
+        pointer-events: none;
+      }
+      .grid.large .variation-icon {
+        width: 32px;
+        height: 32px;
+        bottom: 12px;
+        left: 12px;
+      }
+      .grid.large .variation-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+      .variation-popover {
+        display: none;
+        position: fixed;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        padding: 12px;
+        min-width: 280px;
+        max-width: 500px;
+        z-index: 1000;
+      }
+      .variation-popover.visible {
+        display: block;
+      }
+      .variation-popover h4 {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .variation-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+      }
+      .variation-row:last-child {
+        border-bottom: none;
+      }
+      .variation-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .variation-thumb {
+        width: 100px;
+        height: 130px;
+        object-fit: contain;
+        border-radius: 4px;
+        background: #f5f5f5;
+      }
+      .variation-parts {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .variation-part-thumb {
+        width: 72px;
+        height: 72px;
+        object-fit: contain;
+        border-radius: 3px;
+        background: #f9f9f9;
+        border: 1px solid #eee;
+      }
+      .variation-id {
+        font-family: monospace;
+        font-size: 12px;
+        color: #2196f3;
+        text-decoration: none;
+        margin-top: 4px;
+        text-align: center;
+      }
+      .variation-id:hover {
+        text-decoration: underline;
+      }
+      .variation-popover a {
+        display: inline-block;
       }
 
       /* Mobile styles */
@@ -392,6 +506,26 @@
           font-size: 10px;
           padding: 6px 10px;
         }
+        .variation-icon {
+          width: 28px;
+          height: 28px;
+          bottom: 6px;
+          left: 6px;
+        }
+        .variation-popover {
+          min-width: 260px;
+          max-width: calc(100vw - 24px);
+          max-height: 60vh;
+          overflow-y: auto;
+        }
+        .variation-thumb {
+          width: 70px;
+          height: 90px;
+        }
+        .variation-part-thumb {
+          width: 50px;
+          height: 50px;
+        }
       }
     </style>
   </head>
@@ -405,6 +539,7 @@
         </div>
         <div class="filters">
           <label><input type="checkbox" id="ownedFilter"> owned</label>
+          <label><input type="checkbox" id="groupVariations"> group variations</label>
           <span id="itemCount" class="item-count"></span>
         </div>
       </div>
@@ -430,8 +565,8 @@
       }
 
       function getSearchableText(doll) {
-        // Combine all searchable fields: id, name, description, and part numbers
-        const parts = [doll.id, doll.name, doll.description];
+        // Combine all searchable fields: id, name, description, note, and part numbers
+        const parts = [doll.id, doll.name, doll.description, doll.note];
         if (doll.parts) {
           for (const part of doll.parts) {
             parts.push(part.partNum, part.description);
@@ -440,7 +575,7 @@
         return parts.filter(Boolean).join(" ").toLowerCase();
       }
 
-      function filterCards(searchValue, ownedOnly = false) {
+      function filterCards(searchValue, ownedOnly = false, groupVariations = false) {
         const terms = searchValue.toLowerCase().split(/\s+/).filter(Boolean);
         const cards = document.querySelectorAll(".card");
         let visibleCount = 0;
@@ -448,10 +583,12 @@
         cards.forEach((card) => {
           const searchText = card.dataset.search;
           const isOwned = card.dataset.owned === "true";
+          const isVariation = card.dataset.isVariation === "true";
           // All terms must match somewhere in the searchable text
           const matchesSearch = terms.length === 0 || terms.every(term => searchText.includes(term));
           const matchesOwned = !ownedOnly || isOwned;
-          const visible = matchesSearch && matchesOwned;
+          const matchesGrouping = !groupVariations || !isVariation;
+          const visible = matchesSearch && matchesOwned && matchesGrouping;
           card.classList.toggle("hidden", !visible);
           if (visible) visibleCount++;
         });
@@ -460,8 +597,26 @@
       }
 
       async function init() {
-        const res = await fetch("minidolls.bricklink.json");
-        const minidolls = await res.json();
+        const [minidollsRes, variationsRes] = await Promise.all([
+          fetch("minidolls.bricklink.json"),
+          fetch("minidolls.bricklink.variations.json")
+        ]);
+        const minidolls = await minidollsRes.json();
+        const variations = await variationsRes.json();
+
+        // Create lookup by ID
+        const minidollById = new Map();
+        for (const doll of minidolls) {
+          minidollById.set(doll.id, doll);
+        }
+
+        // Build reverse lookup: variation ID -> primary ID
+        const variationToPrimary = new Map();
+        for (const [primaryId, varMap] of Object.entries(variations)) {
+          for (const varId of Object.keys(varMap)) {
+            variationToPrimary.set(varId, primaryId);
+          }
+        }
 
         // Sort by name
         minidolls.sort((a, b) => {
@@ -475,6 +630,8 @@
         const partsIconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>`;
         const checkmarkSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6L9 17l-5-5"/></svg>`;
         const noteSvg = `<svg viewBox="0 0 24 24" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>`;
+        // Hierarchy/variation icon based on the provided image
+        const variationIconSvg = `<svg viewBox="0 0 24 24"><circle cx="5" cy="5" r="2.5"/><circle cx="5" cy="12" r="2.5"/><path d="M5 7.5v2M5 14.5v4"/><rect x="11" y="3" width="10" height="4" rx="2"/><rect x="11" y="10" width="8" height="4" rx="2"/><rect x="11" y="17" width="10" height="4" rx="2"/></svg>`;
         grid.innerHTML = minidolls.map((doll, index) => {
           const name = doll.name || doll.id;
           const color = getColorForName(name, nameColorMap);
@@ -482,8 +639,11 @@
           const searchText = getSearchableText(doll);
           const ownedBadge = doll.owned ? `<div class="owned-badge">${checkmarkSvg}</div>` : '';
           const noteHtml = doll.note ? `<div class="note-icon">${noteSvg}</div><div class="note-tooltip">${doll.note}</div>` : '';
+          const isPrimary = variations[doll.id];
+          const isVariation = variationToPrimary.has(doll.id);
+          const variationIconHtml = isPrimary ? `<div class="variation-icon" data-primary="${doll.id}">${variationIconSvg}</div>` : '';
           return `
-            <div class="card" data-search="${searchText}" data-index="${index}" data-owned="${doll.owned ? 'true' : 'false'}">
+            <div class="card" data-search="${searchText}" data-index="${index}" data-owned="${doll.owned ? 'true' : 'false'}" data-id="${doll.id}" data-is-variation="${isVariation}">
               <h3 style="background: ${color}">${name}</h3>
               <div class="card-content">
                 <span class="id-pill">${doll.id}</span>
@@ -492,6 +652,7 @@
                   ${noteHtml}
                   <img src="${doll.image}" alt="${doll.description}" loading="lazy" draggable="false">
                 </a>
+                ${variationIconHtml}
                 <div class="parts-icon" data-index="${index}">${partsIconSvg}</div>
               </div>
             </div>
@@ -503,12 +664,14 @@
         const qrcodeEl = document.getElementById("qrcode");
         const sizeToggle = document.getElementById("sizeToggle");
         const ownedFilter = document.getElementById("ownedFilter");
+        const groupVariationsFilter = document.getElementById("groupVariations");
 
         function updateUrl() {
           const url = new URL(window.location);
           const searchValue = searchInput.value;
           const isLarge = grid.classList.contains("large");
           const ownedOnly = ownedFilter.checked;
+          const groupVar = groupVariationsFilter.checked;
 
           if (searchValue) {
             url.searchParams.set("q", searchValue);
@@ -528,19 +691,28 @@
             url.searchParams.delete("owned");
           }
 
+          if (groupVar) {
+            url.searchParams.set("grouped", "1");
+          } else {
+            url.searchParams.delete("grouped");
+          }
+
           history.replaceState(null, "", url);
           updateQRCode();
         }
 
         function updateQRCode() {
+          const baseUrl = "https://williamkapke.github.io/legos/bricklink.html";
+          const params = new URLSearchParams(window.location.search);
+          const url = params.toString() ? `${baseUrl}?${params}` : baseUrl;
           const qr = qrcode(0, "M");
-          qr.addData(window.location.href);
+          qr.addData(url);
           qr.make();
           qrcodeEl.innerHTML = qr.createImgTag(3, 0);
         }
 
         function applyFilters() {
-          filterCards(searchInput.value, ownedFilter.checked);
+          filterCards(searchInput.value, ownedFilter.checked, groupVariationsFilter.checked);
           updateUrl();
         }
 
@@ -555,6 +727,7 @@
         const initialSearch = urlParams.get("q") || "";
         const initialSize = urlParams.get("size");
         const initialOwned = urlParams.get("owned");
+        const initialGrouped = urlParams.get("grouped");
 
         if (initialSearch) {
           searchInput.value = initialSearch;
@@ -566,12 +739,16 @@
         if (initialOwned === "1") {
           ownedFilter.checked = true;
         }
-        filterCards(initialSearch, ownedFilter.checked);
+        if (initialGrouped === "1") {
+          groupVariationsFilter.checked = true;
+        }
+        filterCards(initialSearch, ownedFilter.checked, groupVariationsFilter.checked);
         updateQRCode();
 
         searchInput.addEventListener("keyup", applyFilters);
         sizeToggle.addEventListener("click", toggleSize);
         ownedFilter.addEventListener("change", applyFilters);
+        groupVariationsFilter.addEventListener("change", applyFilters);
 
         // Set up popover
         const popover = document.getElementById("popover");
@@ -583,8 +760,8 @@
           const partsHtml = doll.parts && doll.parts.length > 0
             ? `<table>${doll.parts.map(p => `<tr>
                 <td><span data-partnum="${p.partNum}">${filterIcon}</span></td>
-                <td><img class="part-thumb" src="${p.image}" alt=""></td>
-                <td><span class="part-num">${p.partNum}</span></td>
+                <td><a href="https://www.bricklink.com/v2/catalog/catalogitem.page?P=${p.partNum}" target="_blank"><img class="part-thumb" src="${p.image}" alt=""></a></td>
+                <td><a href="https://www.bricklink.com/v2/catalog/catalogitem.page?P=${p.partNum}" target="_blank" class="part-num">${p.partNum}</a></td>
                 <td><span class="part-desc">${p.description}</span></td>
               </tr>`).join("")}</table>`
             : `<p class="no-parts">No parts data</p>`;
@@ -649,11 +826,87 @@
           popover.classList.remove("visible");
           searchInput.focus();
         });
+
+        // Variation popover
+        const variationPopover = document.getElementById("variationPopover");
+
+        function showVariationPopover(primaryId, anchorEl) {
+          const varMap = variations[primaryId];
+          if (!varMap) return;
+
+          const rowsHtml = Object.entries(varMap).map(([varId, partNums]) => {
+            const varDoll = minidollById.get(varId);
+            if (!varDoll) return '';
+
+            // Find the actual part objects for the differing parts
+            const partThumbs = partNums.map(pn => {
+              const part = varDoll.parts?.find(p => p.partNum === pn);
+              return part ? `<a href="https://www.bricklink.com/v2/catalog/catalogitem.page?P=${pn}" target="_blank"><img class="variation-part-thumb" src="${part.image}" alt="${pn}" title="${part.description}"></a>` : '';
+            }).join('');
+
+            const varUrl = `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${varId}#T=P`;
+            return `
+              <div class="variation-row">
+                <div class="variation-left">
+                  <a href="${varUrl}" target="_blank"><img class="variation-thumb" src="${varDoll.thumbnail}" alt="${varDoll.id}"></a>
+                  <a href="${varUrl}" target="_blank" class="variation-id">${varId}</a>
+                </div>
+                <div class="variation-parts">${partThumbs}</div>
+              </div>
+            `;
+          }).join('');
+
+          variationPopover.innerHTML = `<h4>Variations</h4>${rowsHtml}`;
+
+          const rect = anchorEl.getBoundingClientRect();
+          variationPopover.style.left = `${rect.left + rect.width / 2}px`;
+          variationPopover.style.top = `${rect.top - 8}px`;
+          variationPopover.style.transform = "translate(-50%, -100%)";
+          variationPopover.classList.add("visible");
+        }
+
+        // Variation icon hover handlers (desktop)
+        grid.addEventListener("mouseenter", (e) => {
+          const varIcon = e.target.closest(".variation-icon");
+          if (!varIcon) return;
+          showVariationPopover(varIcon.dataset.primary, varIcon);
+        }, true);
+
+        grid.addEventListener("mouseleave", (e) => {
+          const varIcon = e.target.closest(".variation-icon");
+          if (!varIcon) return;
+          setTimeout(() => {
+            if (!variationPopover.matches(":hover")) {
+              variationPopover.classList.remove("visible");
+            }
+          }, 100);
+        }, true);
+
+        variationPopover.addEventListener("mouseleave", () => {
+          variationPopover.classList.remove("visible");
+        });
+
+        // Touch support for variation icon (mobile)
+        grid.addEventListener("click", (e) => {
+          const varIcon = e.target.closest(".variation-icon");
+          if (!varIcon) return;
+          e.preventDefault();
+          e.stopPropagation();
+          showVariationPopover(varIcon.dataset.primary, varIcon);
+        });
+
+        // Close variation popover when tapping outside (mobile)
+        document.addEventListener("click", (e) => {
+          if (!variationPopover.contains(e.target) && !e.target.closest(".variation-icon")) {
+            variationPopover.classList.remove("visible");
+          }
+        });
       }
 
       init();
     </script>
     <footer>&copy; 2026 William Kapke &bull; Data provided by <a href="https://www.bricklink.com" target="_blank">Bricklink</a></footer>
     <div id="popover" class="popover"></div>
+    <div id="variationPopover" class="variation-popover"></div>
   </body>
 </html>
