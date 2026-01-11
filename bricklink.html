@@ -187,12 +187,22 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
       }
       .owned-badge svg {
         width: 12px;
         height: 12px;
         stroke: #fff;
         stroke-width: 3;
+        pointer-events: none;
+      }
+      .owned-badge.hover-preview {
+        background: #999;
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+      .owned-badge.hover-preview.visible {
+        opacity: 1;
       }
       .id-pill {
         position: absolute;
@@ -207,6 +217,51 @@
         user-select: text;
         cursor: text;
         z-index: 10;
+      }
+      .set-pill {
+        position: absolute;
+        top: 24px;
+        left: 6px;
+        background: rgba(33, 150, 243, 0.85);
+        color: #fff;
+        font-size: 10px;
+        font-family: monospace;
+        padding: 3px 6px;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 10;
+      }
+      .set-pill.hover-preview {
+        background: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+      .set-pill.hover-preview.visible {
+        opacity: 1;
+      }
+      .set-editor {
+        position: fixed;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        padding: 12px;
+        z-index: 1000;
+        display: none;
+      }
+      .set-editor.visible {
+        display: block;
+      }
+      .set-editor input {
+        width: 150px;
+        font-size: 14px;
+        font-family: monospace;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 8px;
+      }
+      .set-editor input:focus {
+        outline: none;
+        border-color: #2196f3;
       }
       .note-icon {
         position: absolute;
@@ -226,6 +281,18 @@
         height: 14px;
         stroke: #000;
         fill: none;
+        pointer-events: none;
+      }
+      .note-icon.hover-preview {
+        background: #999;
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+      .note-icon.hover-preview.visible {
+        opacity: 1;
+      }
+      .note-icon.hover-preview svg {
+        stroke: #fff;
       }
       .note-tooltip {
         display: none;
@@ -240,10 +307,34 @@
         color: #333;
         max-width: 200px;
         z-index: 100;
+        pointer-events: none;
       }
-      .note-icon:hover + .note-tooltip,
-      .note-tooltip:hover {
+      .note-icon:not(.hover-preview):hover + .note-tooltip {
         display: block;
+      }
+      .note-editor {
+        position: fixed;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        padding: 12px;
+        z-index: 1000;
+        display: none;
+      }
+      .note-editor.visible {
+        display: block;
+      }
+      .note-editor input {
+        width: 250px;
+        font-size: 14px;
+        font-family: inherit;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 8px;
+      }
+      .note-editor input:focus {
+        outline: none;
+        border-color: #2196f3;
       }
       .card.hidden {
         display: none;
@@ -450,6 +541,25 @@
       .variation-popover a {
         display: inline-block;
       }
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: #f44336;
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        opacity: 0;
+        transition: transform 0.3s, opacity 0.3s;
+        z-index: 2000;
+      }
+      .toast.visible {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
 
       /* Mobile styles */
       @media (max-width: 600px) {
@@ -565,8 +675,8 @@
       }
 
       function getSearchableText(doll) {
-        // Combine all searchable fields: id, name, description, note, and part numbers
-        const parts = [doll.id, doll.name, doll.description, doll.note];
+        // Combine all searchable fields: id, name, description, note, setId, and part numbers
+        const parts = [doll.id, doll.name, doll.description, doll.note, doll.setId];
         if (doll.parts) {
           for (const part of doll.parts) {
             parts.push(part.partNum, part.description);
@@ -637,16 +747,24 @@
           const color = getColorForName(name, nameColorMap);
           const url = `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${doll.id}#T=P`;
           const searchText = getSearchableText(doll);
-          const ownedBadge = doll.owned ? `<div class="owned-badge">${checkmarkSvg}</div>` : '';
-          const noteHtml = doll.note ? `<div class="note-icon">${noteSvg}</div><div class="note-tooltip">${doll.note}</div>` : '';
+          const ownedBadge = doll.owned
+            ? `<div class="owned-badge" data-id="${doll.id}">${checkmarkSvg}</div>`
+            : `<div class="owned-badge hover-preview" data-id="${doll.id}">${checkmarkSvg}</div>`;
+          const noteHtml = doll.note
+            ? `<div class="note-icon" data-id="${doll.id}">${noteSvg}</div><div class="note-tooltip">${doll.note}</div>`
+            : `<div class="note-icon hover-preview" data-id="${doll.id}">${noteSvg}</div><div class="note-tooltip"></div>`;
           const isPrimary = variations[doll.id];
           const isVariation = variationToPrimary.has(doll.id);
           const variationIconHtml = isPrimary ? `<div class="variation-icon" data-primary="${doll.id}">${variationIconSvg}</div>` : '';
+          const setPillHtml = doll.setId
+            ? `<span class="set-pill" data-id="${doll.id}">${doll.setId}</span>`
+            : `<span class="set-pill hover-preview" data-id="${doll.id}">set</span>`;
           return `
             <div class="card" data-search="${searchText}" data-index="${index}" data-owned="${doll.owned ? 'true' : 'false'}" data-id="${doll.id}" data-is-variation="${isVariation}">
               <h3 style="background: ${color}">${name}</h3>
               <div class="card-content">
                 <span class="id-pill">${doll.id}</span>
+                ${setPillHtml}
                 <a href="${url}" target="_blank">
                   ${ownedBadge}
                   ${noteHtml}
@@ -901,6 +1019,331 @@
             variationPopover.classList.remove("visible");
           }
         });
+
+        // Toast notification
+        const toast = document.getElementById("toast");
+        let toastTimeout = null;
+        function showToast(message) {
+          toast.textContent = message;
+          toast.classList.add("visible");
+          clearTimeout(toastTimeout);
+          toastTimeout = setTimeout(() => toast.classList.remove("visible"), 3000);
+        }
+
+        // Owned badge hover and click handling (localhost only)
+        const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+        let hoverTimeout = null;
+
+        if (isLocalhost) {
+          // Hover to show grey checkmark after 500ms
+          grid.addEventListener("mouseenter", (e) => {
+            const badge = e.target.closest(".owned-badge.hover-preview");
+            if (!badge) return;
+            hoverTimeout = setTimeout(() => {
+              badge.classList.add("visible");
+            }, 500);
+          }, true);
+
+          grid.addEventListener("mouseleave", (e) => {
+            const badge = e.target.closest(".owned-badge.hover-preview");
+            if (!badge) return;
+            clearTimeout(hoverTimeout);
+            badge.classList.remove("visible");
+          }, true);
+
+          // Click to set owned, shift-click to remove owned
+          grid.addEventListener("click", async (e) => {
+            const badge = e.target.closest(".owned-badge");
+            if (!badge) return;
+            e.preventDefault();
+            e.stopPropagation();
+
+            const dollId = badge.dataset.id;
+            const isOwned = !badge.classList.contains("hover-preview");
+            const doll = minidollById.get(dollId);
+
+            if (!doll) return;
+
+            // Shift-click on owned badge removes ownership
+            if (e.shiftKey && isOwned) {
+              try {
+                const res = await fetch("http://localhost:8787/minidolls/owned", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ id: dollId, owned: false })
+                });
+                if (!res.ok) throw new Error("Server error");
+
+                // Update in-memory data
+                delete doll.owned;
+                // Update UI - make it a hover preview
+                badge.classList.add("hover-preview");
+                badge.classList.remove("visible");
+                // Update card data attributes
+                const card = badge.closest(".card");
+                if (card) {
+                  card.dataset.owned = "false";
+                  card.dataset.search = getSearchableText(doll);
+                }
+              } catch (err) {
+                showToast("Failed to update - is the server running?");
+              }
+              return;
+            }
+
+            // Click on hover preview sets ownership
+            if (!isOwned) {
+              try {
+                const res = await fetch("http://localhost:8787/minidolls/owned", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ id: dollId, owned: true })
+                });
+                if (!res.ok) throw new Error("Server error");
+
+                // Update in-memory data
+                doll.owned = true;
+                // Update UI - make it a solid green badge
+                badge.classList.remove("hover-preview", "visible");
+                // Update card data attributes
+                const card = badge.closest(".card");
+                if (card) {
+                  card.dataset.owned = "true";
+                  card.dataset.search = getSearchableText(doll);
+                }
+              } catch (err) {
+                showToast("Failed to update - is the server running?");
+              }
+            }
+          });
+
+          // Note icon hover and click handling
+          let noteHoverTimeout = null;
+
+          // Hover to show grey note icon after 500ms
+          grid.addEventListener("mouseenter", (e) => {
+            const icon = e.target.closest(".note-icon.hover-preview");
+            if (!icon) return;
+            noteHoverTimeout = setTimeout(() => {
+              icon.classList.add("visible");
+            }, 500);
+          }, true);
+
+          grid.addEventListener("mouseleave", (e) => {
+            const icon = e.target.closest(".note-icon.hover-preview");
+            if (!icon) return;
+            clearTimeout(noteHoverTimeout);
+            icon.classList.remove("visible");
+          }, true);
+
+          // Note editor
+          const noteEditor = document.getElementById("noteEditor");
+          const noteText = document.getElementById("noteText");
+          let currentNoteIcon = null;
+          let currentNoteDoll = null;
+
+          function showNoteEditor(icon, doll) {
+            currentNoteIcon = icon;
+            currentNoteDoll = doll;
+            noteText.value = doll.note || "";
+
+            const rect = icon.getBoundingClientRect();
+            noteEditor.style.left = `${rect.left}px`;
+            noteEditor.style.top = `${rect.bottom + 8}px`;
+            noteEditor.classList.add("visible");
+            noteText.focus();
+          }
+
+          function hideNoteEditor() {
+            noteEditor.classList.remove("visible");
+            currentNoteIcon = null;
+            currentNoteDoll = null;
+          }
+
+          async function saveNote(note) {
+            if (!currentNoteDoll) return;
+
+            try {
+              const res = await fetch("http://localhost:8787/minidolls/note", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: currentNoteDoll.id, note })
+              });
+              if (!res.ok) throw new Error("Server error");
+
+              // Update in-memory data
+              if (note) {
+                currentNoteDoll.note = note;
+              } else {
+                delete currentNoteDoll.note;
+              }
+
+              // Update UI
+              const tooltip = currentNoteIcon.nextElementSibling;
+              if (note) {
+                currentNoteIcon.classList.remove("hover-preview", "visible");
+                tooltip.textContent = note;
+              } else {
+                currentNoteIcon.classList.add("hover-preview");
+                currentNoteIcon.classList.remove("visible");
+                tooltip.textContent = "";
+              }
+
+              // Update search data
+              const card = currentNoteIcon.closest(".card");
+              if (card) card.dataset.search = getSearchableText(currentNoteDoll);
+
+              hideNoteEditor();
+            } catch (err) {
+              showToast("Failed to update - is the server running?");
+            }
+          }
+
+          // Click on note icon to open editor
+          grid.addEventListener("click", (e) => {
+            const icon = e.target.closest(".note-icon");
+            if (!icon) return;
+            e.preventDefault();
+            e.stopPropagation();
+
+            const dollId = icon.dataset.id;
+            const doll = minidollById.get(dollId);
+            if (!doll) return;
+
+            showNoteEditor(icon, doll);
+          });
+
+          // Keyboard shortcuts
+          noteText.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              saveNote(noteText.value.trim());
+            } else if (e.key === "Escape") {
+              e.preventDefault();
+              hideNoteEditor();
+            }
+          });
+
+          // Close editor when clicking outside
+          document.addEventListener("click", (e) => {
+            if (!noteEditor.contains(e.target) && !e.target.closest(".note-icon")) {
+              hideNoteEditor();
+            }
+          });
+
+          // Set ID hover and click handling
+          let setHoverTimeout = null;
+
+          // Hover to show set pill after 500ms
+          grid.addEventListener("mouseenter", (e) => {
+            const pill = e.target.closest(".set-pill.hover-preview");
+            if (!pill) return;
+            setHoverTimeout = setTimeout(() => {
+              pill.classList.add("visible");
+            }, 500);
+          }, true);
+
+          grid.addEventListener("mouseleave", (e) => {
+            const pill = e.target.closest(".set-pill.hover-preview");
+            if (!pill) return;
+            clearTimeout(setHoverTimeout);
+            pill.classList.remove("visible");
+          }, true);
+
+          // Set editor
+          const setEditor = document.getElementById("setEditor");
+          const setIdText = document.getElementById("setIdText");
+          let currentSetPill = null;
+          let currentSetDoll = null;
+
+          function showSetEditor(pill, doll) {
+            currentSetPill = pill;
+            currentSetDoll = doll;
+            setIdText.value = doll.setId || "";
+
+            const rect = pill.getBoundingClientRect();
+            setEditor.style.left = `${rect.left}px`;
+            setEditor.style.top = `${rect.bottom + 8}px`;
+            setEditor.classList.add("visible");
+            setIdText.focus();
+          }
+
+          function hideSetEditor() {
+            setEditor.classList.remove("visible");
+            currentSetPill = null;
+            currentSetDoll = null;
+          }
+
+          async function saveSetId(setId) {
+            if (!currentSetDoll) return;
+
+            try {
+              const res = await fetch("http://localhost:8787/minidolls/setId", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: currentSetDoll.id, setId })
+              });
+              if (!res.ok) throw new Error("Server error");
+
+              // Update in-memory data
+              if (setId) {
+                currentSetDoll.setId = setId;
+              } else {
+                delete currentSetDoll.setId;
+              }
+
+              // Update UI
+              if (setId) {
+                currentSetPill.classList.remove("hover-preview", "visible");
+                currentSetPill.textContent = setId;
+              } else {
+                currentSetPill.classList.add("hover-preview");
+                currentSetPill.classList.remove("visible");
+                currentSetPill.textContent = "set";
+              }
+
+              // Update search data
+              const card = currentSetPill.closest(".card");
+              if (card) card.dataset.search = getSearchableText(currentSetDoll);
+
+              hideSetEditor();
+            } catch (err) {
+              showToast("Failed to update - is the server running?");
+            }
+          }
+
+          // Click on set pill to open editor
+          grid.addEventListener("click", (e) => {
+            const pill = e.target.closest(".set-pill");
+            if (!pill) return;
+            e.preventDefault();
+            e.stopPropagation();
+
+            const dollId = pill.dataset.id;
+            const doll = minidollById.get(dollId);
+            if (!doll) return;
+
+            showSetEditor(pill, doll);
+          });
+
+          // Keyboard shortcuts for set editor
+          setIdText.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              saveSetId(setIdText.value.trim());
+            } else if (e.key === "Escape") {
+              e.preventDefault();
+              hideSetEditor();
+            }
+          });
+
+          // Close editor when clicking outside
+          document.addEventListener("click", (e) => {
+            if (!setEditor.contains(e.target) && !e.target.closest(".set-pill")) {
+              hideSetEditor();
+            }
+          });
+        }
       }
 
       init();
@@ -908,5 +1351,12 @@
     <footer>&copy; 2026 William Kapke &bull; Data provided by <a href="https://www.bricklink.com" target="_blank">Bricklink</a></footer>
     <div id="popover" class="popover"></div>
     <div id="variationPopover" class="variation-popover"></div>
+    <div id="noteEditor" class="note-editor">
+      <input type="text" id="noteText" placeholder="Add a note...">
+    </div>
+    <div id="setEditor" class="set-editor">
+      <input type="text" id="setIdText" placeholder="Set ID...">
+    </div>
+    <div id="toast" class="toast"></div>
   </body>
 </html>
