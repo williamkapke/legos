@@ -627,6 +627,7 @@
   },
   {
     "id": "frnd0609",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0609.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0609.png",
     "description": "Friends Aliya - Dark Blue Vest with Diamonds over White Blouse, Yellow Skirt, Metallic Pink Sandals",
@@ -864,6 +865,7 @@
   },
   {
     "id": "frnd0656",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0656.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0656.png",
     "description": "Friends Aliya - Medium Lavender Vest, Yellow Skirt, Metallic Pink Sandals",
@@ -1416,6 +1418,7 @@
   },
   {
     "id": "frnd0122",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0122.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0122.png",
     "description": "Friends Andrea - Bright Light Orange Asymmetric Skirt with Magenta Fringe, Magenta Top with White Geometric Heart",
@@ -1837,6 +1840,7 @@
   },
   {
     "id": "frnd0348",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0348.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0348.png",
     "description": "Friends Andrea - Dark Blue Skirt, Dark Turquoise Vest and Music Notes Necklace Top",
@@ -1871,7 +1875,6 @@
   {
     "id": "frnd0292",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0292.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0292.png",
     "description": "Friends Andrea - Dark Blue Skirt, Gold Top with Dark Turquoise Vest",
@@ -1906,7 +1909,6 @@
   {
     "id": "frnd0456",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0456.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0456.png",
     "description": "Friends Andrea - Dark Blue Skirt, Metallic Light Blue Jacket over Magenta Top",
@@ -2489,6 +2491,7 @@
   },
   {
     "id": "frnd0260",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0260.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0260.png",
     "description": "Friends Andrea - Light Aqua Layered Skirt, Bright Light Orange Top with Winged Music Notes",
@@ -2933,6 +2936,7 @@
   },
   {
     "id": "frnd0368",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0368.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0368.png",
     "description": "Friends Andrea - Magenta Skirt, Metallic Light Blue Vest over Magenta Top",
@@ -2967,7 +2971,6 @@
   {
     "id": "frnd0169",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0169.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0169.png",
     "description": "Friends Andrea - Medium Azure Skirt, Bright Light Orange Top with Music Notes, Sunglasses",
@@ -4269,6 +4272,7 @@
   },
   {
     "id": "frnd0677",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0677.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0677.png",
     "description": "Friends Autumn - Dark Turquoise Vest over Dark Blue Shirt, Dark Tan Shorts, Metallic Light Blue Sandals",
@@ -4722,6 +4726,7 @@
   },
   {
     "id": "frnd0411",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0411.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0411.png",
     "description": "Friends Ava - Micro Doll",
@@ -5598,6 +5603,7 @@
   },
   {
     "id": "frnd0237",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0237.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0237.png",
     "description": "Friends Daniel - Brown Boots, Dark Blue Jeans, White and Green Top",
@@ -5769,6 +5775,7 @@
   },
   {
     "id": "frnd0657",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0657.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0657.png",
     "description": "Friends Darrel - Orange Safety Shirt, Sand Blue Legs, Medium Nougat Boots, Red Construction Helmet",
@@ -7012,7 +7019,6 @@
   {
     "id": "frnd0465",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0465.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0465.png",
     "description": "Friends Emma - Coral and Lavender Cat Shirt, Dark Pink Skirt, Medium Lavender Shoes",
@@ -7611,7 +7617,7 @@
   {
     "id": "frnd0294",
     "owned": true,
-    "note": "",
+    "note": "Missing legs",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0294.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0294.png",
     "description": "Friends Emma - Dark Purple Skirt, Medium Lavender Top with White Birds, Sand Blue Vest",
@@ -8288,7 +8294,7 @@
   {
     "id": "frnd0343",
     "owned": true,
-    "note": "",
+    "note": "Missing legs",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0343.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0343.png",
     "description": "Friends Emma - Light Aqua Skirt, White and Light Aqua Top with Coral Flamingo Birds",
@@ -8697,7 +8703,6 @@
   {
     "id": "frnd0427",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0427.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0427.png",
     "description": "Friends Emma - Medium Lavender Skirt, Coral and Lavender Top with Cat Head",
@@ -9523,6 +9528,7 @@
   },
   {
     "id": "frnd0240",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0240.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0240.png",
     "description": "Friends Ethan - Black Trousers, Sand Green Hoodie",
@@ -10255,6 +10261,7 @@
   },
   {
     "id": "frnd0426",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0426.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0426.png",
     "description": "Friends Henry - Micro Doll",
@@ -10579,6 +10586,8 @@
   },
   {
     "id": "frnd0500",
+    "owned": true,
+    "note": "Friendship Tree House",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0500.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0500.png",
     "description": "Friends Jackson - Red Shoes, Blue Trousers, Red Vest, Sand Blue Undershirt, White Sleeves",
@@ -11725,6 +11734,7 @@
   },
   {
     "id": "frnd0470",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0470.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0470.png",
     "description": "Friends Kevin - Micro Doll",
@@ -13715,7 +13725,7 @@
   {
     "id": "frnd0124",
     "owned": true,
-    "note": "Missing head & hair",
+    "note": "Missing legs",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0124.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0124.png",
     "description": "Friends Livi - Flat Silver Layered Skirt, Medium Lavender Vest, Flower",
@@ -14421,6 +14431,7 @@
   },
   {
     "id": "frnd0199",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0199.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0199.png",
     "description": "Friends Martina - Lime Wrap Skirt, Dark Pink and White Swimsuit Top, Bright Pink Flower",
@@ -14856,6 +14867,7 @@
   },
   {
     "id": "frnd0487",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0487.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0487.png",
     "description": "Friends Maya - Micro Doll",
@@ -15120,6 +15132,7 @@
   },
   {
     "id": "frnd0497",
+    "note": "Friendship Tree House",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0497.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0497.png",
     "description": "Friends Mia - Blue Overalls, Yellow Blouse and Sand Green Boots",
@@ -15397,7 +15410,6 @@
   {
     "id": "frnd0005",
     "owned": true,
-    "note": "Need correct (old) head version.",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0005.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0005.png",
     "description": "Friends Mia - Dark Blue Layered Skirt, Light Aqua Halter Neck Top",
@@ -15504,7 +15516,6 @@
   {
     "id": "frnd0469",
     "owned": true,
-    "note": "Missing Helmet/Hair",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0469.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0469.png",
     "description": "Friends Mia - Dark Blue Trousers, Lime Jacket Top, Black Riding Helmet",
@@ -15611,7 +15622,6 @@
   {
     "id": "frnd0342",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0342.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0342.png",
     "description": "Friends Mia - Dark Blue Trousers, Patterned Top",
@@ -15790,7 +15800,6 @@
   {
     "id": "frnd0349",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0349.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0349.png",
     "description": "Friends Mia - Dark Purple Shorts, Lime Jacket Top, Red Hair",
@@ -16007,6 +16016,7 @@
   },
   {
     "id": "frnd0315",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0315.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0315.png",
     "description": "Friends Mia - Dark Purple Shorts, Striped Top",
@@ -16317,7 +16327,6 @@
   {
     "id": "frnd0324",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0324.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0324.png",
     "description": "Friends Mia - Gymnast",
@@ -16679,7 +16688,6 @@
   },
   {
     "id": "frnd0367",
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0367.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0367.png",
     "description": "Friends Mia - Lime Cropped Trousers, Striped Top, Sunglasses",
@@ -16759,7 +16767,6 @@
   {
     "id": "frnd0464",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0464.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0464.png",
     "description": "Friends Mia - Lime Plaid Shirt, Dark Purple Shorts",
@@ -16866,7 +16873,6 @@
   {
     "id": "frnd0306",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0306.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0306.png",
     "description": "Friends Mia - Lime Wetsuit, Sunglasses",
@@ -17316,7 +17322,6 @@
   },
   {
     "id": "frnd0409",
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0409.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0409.png",
     "description": "Friends Mia - Olive Green Shorts, Dark Purple Top with Diamonds and Triangles",
@@ -17379,12 +17384,11 @@
         "description": "Red Mini Doll, Hair Combo, Hair with Hat, Ponytail with Molded Lavender Ski Helmet Pattern",
         "image": "https://img.bricklink.com/P/5/30926pb02.jpg"
       }
-    ],
-    "owned": true
+    ]
   },
   {
     "id": "frnd0352",
-    "note": "Owned: frnd0388 - Alt with sunglasses",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0352.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0352.png",
     "description": "Friends Mia - Olive Green Shorts, Orange and Bright Light Orange Top with Lightning Bolts, Orange Shoes",
@@ -17414,8 +17418,7 @@
         "description": "Red Mini Doll, Hair Friends Long Ponytail, Side Bangs, Hole on Top",
         "image": "https://img.bricklink.com/P/5/92257.jpg"
       }
-    ],
-    "owned": true
+    ]
   },
   {
     "id": "frnd0369",
@@ -17452,7 +17455,6 @@
   },
   {
     "id": "frnd0388",
-    "note": "Missing Sunglasses",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0388.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0388.png",
     "description": "Friends Mia - Olive Green Shorts, Orange and Bright Light Orange Top with Lightning Bolts, Orange Shoes, Sunglasses",
@@ -20217,7 +20219,6 @@
   {
     "id": "frnd0119",
     "owned": true,
-    "note": "Missing Hair & flower",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0119.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0119.png",
     "description": "Friends Olivia (Light Nougat) - Medium Lavender Skirt, Dark Blue Vest Top, Flower",
@@ -21066,6 +21067,7 @@
   },
   {
     "id": "frnd0351",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0351.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0351.png",
     "description": "Friends Olivia (Nougat) - Dark Azure Skirt and Top with Bright Light Yellow Vest, Dark Pink Shoes",
@@ -21276,6 +21278,7 @@
   },
   {
     "id": "frnd0370",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0370.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0370.png",
     "description": "Friends Olivia (Nougat) - Dark Pink Skirt and Dark Blue Leggings, Dark Pink Top with Blue Jacket",
@@ -21825,6 +21828,7 @@
   },
   {
     "id": "frnd0498",
+    "note": "Friendship Tree House",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0498.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0498.png",
     "description": "Friends Olivia (Nougat) - White Bee Suit and Black Boots",
@@ -22702,7 +22706,6 @@
   {
     "id": "frnd0603",
     "owned": true,
-    "note": "Missing Hair & Legs",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0603.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0603.png",
     "description": "Friends Paisley - Bright Pink Pajamas, Top with Magenta and Coral Hearts",
@@ -23426,6 +23429,7 @@
   },
   {
     "id": "frnd0571",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0571.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0571.png",
     "description": "Friends Peter - Micro Doll, Open Mouth",
@@ -23486,6 +23490,8 @@
   },
   {
     "id": "frnd0515",
+    "owned": true,
+    "note": "Missing hair",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0515.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0515.png",
     "description": "Friends Priyanka - Coral Knotted Blouse with White Swirls, White Shorts, Yellow Shoes",
@@ -23816,6 +23822,8 @@
   },
   {
     "id": "frnd0499",
+    "owned": true,
+    "note": "Friendship Tree House",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0499.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0499.png",
     "description": "Friends River - Sand Blue Shoes, Black Jeans, Red Checkered Shirt with White Undershirt",
@@ -24565,11 +24573,11 @@
         "description": "Sand Green Mini Doll Hips and Skirt, Nougat Legs and Coral and Dark Purple Shoes with Laces Pattern - Thick Hinge",
         "image": "https://img.bricklink.com/P/48/92252c00pb034.jpg"
       }
-    ],
-    "owned": true
+    ]
   },
   {
     "id": "frnd0488",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0488.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0488.png",
     "description": "Friends Savannah - Sand Green Skirt, Magenta Hat",
@@ -26021,6 +26029,7 @@
   },
   {
     "id": "frnd0161",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0161.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0161.png",
     "description": "Friends Stephanie - Dark Purple Skirt, Medium Azure Top",
@@ -26193,7 +26202,6 @@
   {
     "id": "frnd0323",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0323.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0323.png",
     "description": "Friends Stephanie - Gymnast",
@@ -26516,7 +26524,6 @@
   {
     "id": "frnd0008",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0008.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0008.png",
     "description": "Friends Stephanie - Magenta Layered Skirt, White Halter Top with Circles and Stars",
@@ -27127,7 +27134,6 @@
   {
     "id": "frnd0405",
     "owned": true,
-    "note": "Missing sunglasses",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0405.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0405.png",
     "description": "Friends Stephanie - Medium Azure Skirt, Medium Azure and Dark Purple Jacket, Sunglasses",
@@ -27201,7 +27207,6 @@
   {
     "id": "frnd0314",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0314.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0314.png",
     "description": "Friends Stephanie - Medium Azure Skirt, Striped Top",
@@ -27269,7 +27274,6 @@
   {
     "id": "frnd0353",
     "owned": true,
-    "note": "",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0353.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0353.png",
     "description": "Friends Stephanie - Medium Azure Skirt, White Top with Palm Trees",
@@ -27492,6 +27496,7 @@
   },
   {
     "id": "frnd0506",
+    "owned": true,
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0506.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0506.png",
     "description": "Friends Stephanie - Metallic Light Blue Swimsuit Top, Medium Azure Skirt, Bright Pink Hat",
@@ -28221,6 +28226,8 @@
   },
   {
     "id": "frnd0327",
+    "owned": true,
+    "note": "Missing head, hair, and glasses",
     "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0327.t1.png",
     "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0327.png",
     "description": "Friends Vicky - Yellow Skirt, Bright Light Orange Top, Sunglasses",
