@@ -39,6 +39,8 @@
       // Cell size in mm
       const CELL_WIDTH_MM = 32;
       const IMAGE_HEIGHT_MM = 50;
+      const MICRO_HEIGHT_MM = 32;
+      const BABY_HEIGHT_MM = 19;
       const HEADER_HEIGHT_MM = 6;
       const CELL_HEIGHT_MM = IMAGE_HEIGHT_MM + HEADER_HEIGHT_MM; // 56mm total
 
@@ -51,6 +53,8 @@
       const CELL_HEIGHT = Math.round(CELL_HEIGHT_MM * PX_PER_MM);
       const HEADER_HEIGHT = Math.round(HEADER_HEIGHT_MM * PX_PER_MM);
       const IMAGE_HEIGHT = Math.round(IMAGE_HEIGHT_MM * PX_PER_MM);
+      const MICRO_HEIGHT = Math.round(MICRO_HEIGHT_MM * PX_PER_MM);
+      const BABY_HEIGHT = Math.round(BABY_HEIGHT_MM * PX_PER_MM);
 
       // Grid size
       const GRID_WIDTH = CELL_WIDTH * COLS;
@@ -80,6 +84,13 @@
           nameColorMap.set(name, COLORS[colorIndex]);
         }
         return nameColorMap.get(name);
+      }
+
+      function getTargetHeight(doll) {
+        const desc = doll.description.toLowerCase();
+        if (desc.includes('baby')) return BABY_HEIGHT;
+        if (desc.includes('micro') || desc.includes('mirco')) return MICRO_HEIGHT;
+        return IMAGE_HEIGHT;
       }
 
       function loadImage(src) {
@@ -198,17 +209,22 @@
             ctx.fillStyle = bounds.bgColor;
             ctx.fillRect(cellX, imageY, CELL_WIDTH, IMAGE_HEIGHT);
 
+            // Use smaller area for micro/baby dolls (bottom-aligned)
+            const targetHeight = getTargetHeight(doll);
+
             // Scale cropped content to fit image area while maintaining aspect ratio
             const scale = Math.min(
               CELL_WIDTH / bounds.width,
-              IMAGE_HEIGHT / bounds.height
+              targetHeight / bounds.height
             );
             const drawWidth = bounds.width * scale;
             const drawHeight = bounds.height * scale;
 
-            // Center in image area
+            // Center horizontally, position at bottom for smaller dolls, center for normal
             const drawX = cellX + (CELL_WIDTH - drawWidth) / 2;
-            const drawY = imageY + (IMAGE_HEIGHT - drawHeight) / 2;
+            const drawY = targetHeight < IMAGE_HEIGHT
+              ? imageY + IMAGE_HEIGHT - drawHeight  // Bottom-aligned for smaller dolls
+              : imageY + (IMAGE_HEIGHT - drawHeight) / 2;  // Centered for normal
 
             // Draw only the cropped portion
             ctx.drawImage(
@@ -239,11 +255,8 @@
         const res = await fetch("minidolls.bricklink.json");
         const minidolls = await res.json();
 
-        // Filter: owned and not micro
-        const filtered = minidolls.filter(doll =>
-          doll.owned &&
-          !doll.description.toLowerCase().includes('micro')
-        );
+        // Filter: owned only
+        const filtered = minidolls.filter(doll => doll.owned);
 
         // Sort by name (same as bricklink.html)
         filtered.sort((a, b) => {
