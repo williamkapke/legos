@@ -1712,7 +1712,9 @@
         "description": "Medium Nougat Torso Mini Doll Girl Dark Azure Bikini Top Pattern, Medium Nougat Arms with Hands",
         "image": "https://img.bricklink.com/P/150/FTGpb023c01.jpg"
       }
-    ]
+    ],
+    "owned": true,
+    "setId": "41008"
   },
   {
     "id": "frnd0087",
@@ -2345,7 +2347,9 @@
         "description": "Medium Nougat Torso Mini Doll Girl Dark Turquoise and Bright Light Orange Wetsuit with Seahorse Logo Pattern, Medium Nougat Arms with Hands",
         "image": "https://img.bricklink.com/P/150/FTGpb229c01.jpg"
       }
-    ]
+    ],
+    "setId": "41381",
+    "owned": true
   },
   {
     "id": "frnd0014",
@@ -10527,7 +10531,9 @@
         "description": "Magenta Mini Doll Hips and Skirt Wrap with Light Nougat Legs and Sandals with Magenta Soles and Dark Blue Straps Pattern - Thick Hinge",
         "image": "https://img.bricklink.com/P/71/11244c00pb02.jpg"
       }
-    ]
+    ],
+    "owned": true,
+    "setId": "41008"
   },
   {
     "id": "frnd0575",
@@ -16989,7 +16995,8 @@
         "description": "Trans-Purple Friends Accessories Sunglasses / Glasses with Small Pin",
         "image": "https://img.bricklink.com/P/51/18854.jpg"
       }
-    ]
+    ],
+    "setId": "41381"
   },
   {
     "id": "frnd0098",
@@ -17818,7 +17825,9 @@
         "description": "White Mini Doll Hips and Trousers with Back Pockets with Black Boots Pattern - Thick Hinge",
         "image": "https://img.bricklink.com/P/1/92253c00pb02.jpg"
       }
-    ]
+    ],
+    "owned": true,
+    "setId": "41126"
   },
   {
     "id": "frnd0273",
@@ -21760,7 +21769,9 @@
         "description": "Reddish Brown Mini Doll, Hair Friends Long Wavy with Side French Braid",
         "image": "https://img.bricklink.com/P/88/35620.jpg"
       }
-    ]
+    ],
+    "owned": true,
+    "setId": "41381"
   },
   {
     "id": "frnd0447",
@@ -26072,7 +26083,9 @@
         "description": "Light Nougat Torso Mini Doll Girl White Plaid Button Top Sleeveless with Open Collar over Lavender Shirt Pattern, Light Nougat Arms with Hands",
         "image": "https://img.bricklink.com/P/90/FTGpb047c01.jpg"
       }
-    ]
+    ],
+    "setId": "41126",
+    "owned": true
   },
   {
     "id": "frnd0106",
@@ -29442,7 +29455,9 @@
         "description": "Yellow Plate, Round 1 x 1 with Open Stud",
         "image": "https://img.bricklink.com/P/3/85861.jpg"
       }
-    ]
+    ],
+    "setId": "41381",
+    "owned": true
   },
   {
     "id": "frnd0390",
@@ -30070,6 +30085,853 @@
         "colorId": "1",
         "description": "White Torso Skeleton, Rounded Rib Cage and Thick Shoulder Pins",
         "image": "https://img.bricklink.com/P/1/60115.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0884",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0884.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0884.png",
+    "description": "*NEW! Friends Alba - Micro Doll, Magenta Dress, Orange Life Jacket",
+    "name": "Alba",
+    "parts": [
+      {
+        "partNum": "36037",
+        "colorId": "120",
+        "description": "Dark Brown Minifigure, Hair Female Mid-Length Combed Behind Ear",
+        "image": "https://img.bricklink.com/P/120/36037.jpg"
+      },
+      {
+        "partNum": "69969pb26",
+        "colorId": "150",
+        "description": "",
+        "image": "https://img.bricklink.com/P/150/69969pb26.jpg"
+      },
+      {
+        "partNum": "105992",
+        "colorId": "150",
+        "description": "Medium Nougat Mini Doll, Head Friends with Dark Brown Thick Eyebrows, Dark Orange Eyes, Nougat Lips, and Closed Mouth Smile Pattern",
+        "image": "https://img.bricklink.com/P/150/105992.jpg"
+      },
+      {
+        "partNum": "24184",
+        "colorId": "4",
+        "description": "Orange Mini Doll, Life Jacket, Friends",
+        "image": "https://img.bricklink.com/P/4/24184.jpg"
+      }
+    ],
+    "owned": true,
+    "setId": "42681"
+  },
+  {
+    "id": "frnd0870",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0870.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0870.png",
+    "description": "*NEW! Friends Aliya - Bright Pink, Red and White Sleeveless Shirt, Magenta Trousers, Dark Blue Boots, Magenta Horse Riding Helmet",
+    "name": "Aliya",
+    "parts": [
+      {
+        "partNum": "2136pb06",
+        "colorId": "120",
+        "description": "",
+        "image": "https://img.bricklink.com/P/120/2136pb06.jpg"
+      },
+      {
+        "partNum": "67072c00pb025",
+        "colorId": "71",
+        "description": "",
+        "image": "https://img.bricklink.com/P/71/67072c00pb025.jpg"
+      },
+      {
+        "partNum": "101262",
+        "colorId": "240",
+        "description": "Medium Brown Mini Doll, Head Friends with Black Eyebrows and Eyelashes, Dark Orange Eyes, Reddish Brown Lips, and Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/240/101262.jpg"
+      },
+      {
+        "partNum": "FTGpb560c01",
+        "colorId": "240",
+        "description": "",
+        "image": "https://img.bricklink.com/P/240/FTGpb560c01.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0862",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0862.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0862.png",
+    "description": "*NEW! Friends Aliya - Coral Sweater Vest, Blue Skirt, Metallic Light Blue Shoes",
+    "name": "Aliya",
+    "parts": [
+      {
+        "partNum": "35216ac00pb034",
+        "colorId": "7",
+        "description": "",
+        "image": "https://img.bricklink.com/P/7/35216ac00pb034.jpg"
+      },
+      {
+        "partNum": "2644",
+        "colorId": "120",
+        "description": "Dark Brown Mini Doll, Hair Friends Short with Curls and Corn Rows",
+        "image": "https://img.bricklink.com/P/120/2644.jpg"
+      },
+      {
+        "partNum": "101262",
+        "colorId": "240",
+        "description": "Medium Brown Mini Doll, Head Friends with Black Eyebrows and Eyelashes, Dark Orange Eyes, Reddish Brown Lips, and Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/240/101262.jpg"
+      },
+      {
+        "partNum": "FTGpb555c01",
+        "colorId": "240",
+        "description": "",
+        "image": "https://img.bricklink.com/P/240/FTGpb555c01.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0873",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0873.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0873.png",
+    "description": "*NEW! Friends Aliya - Coral, Medium Azure and Bright Light Yellow Top, White Skirt, Tan Sandals, Trans-Purple Sunglasses",
+    "name": "Aliya",
+    "parts": [
+      {
+        "partNum": "2644",
+        "colorId": "120",
+        "description": "Dark Brown Mini Doll, Hair Friends Short with Curls and Corn Rows",
+        "image": "https://img.bricklink.com/P/120/2644.jpg"
+      },
+      {
+        "partNum": "101262",
+        "colorId": "240",
+        "description": "Medium Brown Mini Doll, Head Friends with Black Eyebrows and Eyelashes, Dark Orange Eyes, Reddish Brown Lips, and Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/240/101262.jpg"
+      },
+      {
+        "partNum": "FTGpb528c01",
+        "colorId": "240",
+        "description": "Medium Brown Torso Mini Doll Girl Coral, Medium Azure and Bright Light Yellow Sleeveless Tank Top Short Pattern, Medium Brown Arms with Hands",
+        "image": "https://img.bricklink.com/P/240/FTGpb528c01.jpg"
+      },
+      {
+        "partNum": "18854",
+        "colorId": "51",
+        "description": "Trans-Purple Friends Accessories Sunglasses / Glasses with Small Pin",
+        "image": "https://img.bricklink.com/P/51/18854.jpg"
+      },
+      {
+        "partNum": "35216ac00pb030",
+        "colorId": "1",
+        "description": "White Mini Doll Hips and Skirt with Molded Medium Brown Legs and Printed Tan Sandals Pattern - Thin Hinge",
+        "image": "https://img.bricklink.com/P/1/35216ac00pb030.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0860",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0860.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0860.png",
+    "description": "*NEW! Friends Autumn - Blue Tied Flannel Vest, Dark Blue Trousers Bell-Bottoms, Dark Tan Shoes",
+    "name": "Autumn",
+    "parts": [
+      {
+        "partNum": "2125c00pb014",
+        "colorId": "63",
+        "description": "",
+        "image": "https://img.bricklink.com/P/63/2125c00pb014.jpg"
+      },
+      {
+        "partNum": "2640",
+        "colorId": "68",
+        "description": "Dark Orange Mini Doll, Hair Wavy, Parted on Right, Loose Braid in Back",
+        "image": "https://img.bricklink.com/P/68/2640.jpg"
+      },
+      {
+        "partNum": "101267",
+        "colorId": "90",
+        "description": "Light Nougat Mini Doll, Head Friends with Dark Orange Eyebrows, Green Eyes, Nougat Lips and Freckles, and Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/90/101267.jpg"
+      },
+      {
+        "partNum": "FTGpb553c01",
+        "colorId": "90",
+        "description": "",
+        "image": "https://img.bricklink.com/P/90/FTGpb553c01.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0875",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0875.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0875.png",
+    "description": "*NEW! Friends Autumn - Medium Lavender Jumpsuit Shorts, Dark Blue Sandals",
+    "name": "Autumn",
+    "parts": [
+      {
+        "partNum": "2640",
+        "colorId": "68",
+        "description": "Dark Orange Mini Doll, Hair Wavy, Parted on Right, Loose Braid in Back",
+        "image": "https://img.bricklink.com/P/68/2640.jpg"
+      },
+      {
+        "partNum": "101267",
+        "colorId": "90",
+        "description": "Light Nougat Mini Doll, Head Friends with Dark Orange Eyebrows, Green Eyes, Nougat Lips and Freckles, and Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/90/101267.jpg"
+      },
+      {
+        "partNum": "FTGpb564c01",
+        "colorId": "90",
+        "description": "",
+        "image": "https://img.bricklink.com/P/90/FTGpb564c01.jpg"
+      },
+      {
+        "partNum": "1826cc00pb016",
+        "colorId": "157",
+        "description": "",
+        "image": "https://img.bricklink.com/P/157/1826cc00pb016.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0871",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0871.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0871.png",
+    "description": "*NEW! Friends Cindy",
+    "name": "Cindy",
+    "parts": [
+      {
+        "partNum": "7842",
+        "colorId": "103",
+        "description": "",
+        "image": "https://img.bricklink.com/P/103/7842.jpg"
+      },
+      {
+        "partNum": "2136pb06",
+        "colorId": "120",
+        "description": "",
+        "image": "https://img.bricklink.com/P/120/2136pb06.jpg"
+      },
+      {
+        "partNum": "115432",
+        "colorId": "28",
+        "description": "",
+        "image": "https://img.bricklink.com/P/28/115432.jpg"
+      },
+      {
+        "partNum": "FTGpb561c01",
+        "colorId": "28",
+        "description": "",
+        "image": "https://img.bricklink.com/P/28/FTGpb561c01.jpg"
+      },
+      {
+        "partNum": "67072c00pb005",
+        "colorId": "1",
+        "description": "White Mini Doll Hips and Trousers with Back Pockets with Molded Black Lower Legs / Boots Pattern - Thin Hinge",
+        "image": "https://img.bricklink.com/P/1/67072c00pb005.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0863",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0863.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0863.png",
+    "description": "*NEW! Friends Iza",
+    "name": "Iza",
+    "parts": [
+      {
+        "partNum": "2640",
+        "colorId": "103",
+        "description": "Bright Light Yellow Mini Doll, Hair Wavy, Parted on Right, Loose Braid in Back",
+        "image": "https://img.bricklink.com/P/103/2640.jpg"
+      },
+      {
+        "partNum": "114823",
+        "colorId": "90",
+        "description": "",
+        "image": "https://img.bricklink.com/P/90/114823.jpg"
+      },
+      {
+        "partNum": "FTGpb556c01",
+        "colorId": "90",
+        "description": "",
+        "image": "https://img.bricklink.com/P/90/FTGpb556c01.jpg"
+      },
+      {
+        "partNum": "1826cc00pb010",
+        "colorId": "157",
+        "description": "Medium Lavender Mini Doll Hips and Shorts Folded Hem with Molded Light Nougat Legs and Printed Dark Tan Shoes with White Laces, Soles and Socks Pattern - Thin Hinge",
+        "image": "https://img.bricklink.com/P/157/1826cc00pb010.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0865",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0865.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0865.png",
+    "description": "*NEW! Friends Leo - Bright Light Orange Sleeveless Shirt, Dark Blue Cropped Trousers, Blue Shoes",
+    "name": "Leo",
+    "parts": [
+      {
+        "partNum": "35216bc00pb013",
+        "colorId": "63",
+        "description": "",
+        "image": "https://img.bricklink.com/P/63/35216bc00pb013.jpg"
+      },
+      {
+        "partNum": "101191",
+        "colorId": "150",
+        "description": "Medium Nougat Mini Doll, Head Friends with Thick Black Eyebrows, Dark Orange Eyes, and Lopsided Grin Pattern",
+        "image": "https://img.bricklink.com/P/150/101191.jpg"
+      },
+      {
+        "partNum": "FTBpb155c01",
+        "colorId": "150",
+        "description": "",
+        "image": "https://img.bricklink.com/P/150/FTBpb155c01.jpg"
+      },
+      {
+        "partNum": "40938",
+        "colorId": "88",
+        "description": "Reddish Brown Minifigure, Hair Short Tousled with 2 Locks on Left Side",
+        "image": "https://img.bricklink.com/P/88/40938.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0883",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0883.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0883.png",
+    "description": "*NEW! Friends Leo - Bright Light Orange Sleeveless Shirt, Orange Life Jacket, Dark Blue Cropped Trousers, Blue Shoes",
+    "name": "Leo",
+    "parts": [
+      {
+        "partNum": "35216bc00pb013",
+        "colorId": "63",
+        "description": "",
+        "image": "https://img.bricklink.com/P/63/35216bc00pb013.jpg"
+      },
+      {
+        "partNum": "101191",
+        "colorId": "150",
+        "description": "Medium Nougat Mini Doll, Head Friends with Thick Black Eyebrows, Dark Orange Eyes, and Lopsided Grin Pattern",
+        "image": "https://img.bricklink.com/P/150/101191.jpg"
+      },
+      {
+        "partNum": "FTBpb155c01",
+        "colorId": "150",
+        "description": "",
+        "image": "https://img.bricklink.com/P/150/FTBpb155c01.jpg"
+      },
+      {
+        "partNum": "24184",
+        "colorId": "4",
+        "description": "Orange Mini Doll, Life Jacket, Friends",
+        "image": "https://img.bricklink.com/P/4/24184.jpg"
+      },
+      {
+        "partNum": "40938",
+        "colorId": "88",
+        "description": "Reddish Brown Minifigure, Hair Short Tousled with 2 Locks on Left Side",
+        "image": "https://img.bricklink.com/P/88/40938.jpg"
+      }
+    ],
+    "setId": "42681",
+    "owned": true
+  },
+  {
+    "id": "frnd0879",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0879.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0879.png",
+    "description": "*NEW! Friends Leo - Dark Turquoise and Yellow Jacket, Dark Blue Cropped Trousers, Blue Shoes",
+    "name": "Leo",
+    "parts": [
+      {
+        "partNum": "35216bc00pb013",
+        "colorId": "63",
+        "description": "",
+        "image": "https://img.bricklink.com/P/63/35216bc00pb013.jpg"
+      },
+      {
+        "partNum": "101191",
+        "colorId": "150",
+        "description": "Medium Nougat Mini Doll, Head Friends with Thick Black Eyebrows, Dark Orange Eyes, and Lopsided Grin Pattern",
+        "image": "https://img.bricklink.com/P/150/101191.jpg"
+      },
+      {
+        "partNum": "FTBpb158c01",
+        "colorId": "150",
+        "description": "",
+        "image": "https://img.bricklink.com/P/150/FTBpb158c01.jpg"
+      },
+      {
+        "partNum": "40938",
+        "colorId": "88",
+        "description": "Reddish Brown Minifigure, Hair Short Tousled with 2 Locks on Left Side",
+        "image": "https://img.bricklink.com/P/88/40938.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0872",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0872.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0872.png",
+    "description": "*NEW! Friends Liann - Dark Azure and Bright Light Blue Vest  over White Top, Sand Green Trousers, Dark Brown Boots, Bright Light Orange Horse Riding Helmet",
+    "name": "Liann",
+    "parts": [
+      {
+        "partNum": "2136pb07",
+        "colorId": "11",
+        "description": "",
+        "image": "https://img.bricklink.com/P/11/2136pb07.jpg"
+      },
+      {
+        "partNum": "101186",
+        "colorId": "241",
+        "description": "Medium Tan Mini Doll, Head Friends with Black Eyebrows, Reddish Brown Eyes, Nougat Lips, and Dark Orange Lopsided Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/241/101186.jpg"
+      },
+      {
+        "partNum": "FTGpb562c01",
+        "colorId": "241",
+        "description": "",
+        "image": "https://img.bricklink.com/P/241/FTGpb562c01.jpg"
+      },
+      {
+        "partNum": "67072c00pb026",
+        "colorId": "48",
+        "description": "",
+        "image": "https://img.bricklink.com/P/48/67072c00pb026.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0864",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0864.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0864.png",
+    "description": "*NEW! Friends Liann - Lime, Coral and Medium Azure Tank Top, Orange Skirt, Medium Lavender Shoes",
+    "name": "Liann",
+    "parts": [
+      {
+        "partNum": "2633",
+        "colorId": "11",
+        "description": "Black Mini Doll, Hair Female Long, Parted Bangs, Swept Back in Bun, Hole in Back",
+        "image": "https://img.bricklink.com/P/11/2633.jpg"
+      },
+      {
+        "partNum": "101186",
+        "colorId": "241",
+        "description": "Medium Tan Mini Doll, Head Friends with Black Eyebrows, Reddish Brown Eyes, Nougat Lips, and Dark Orange Lopsided Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/241/101186.jpg"
+      },
+      {
+        "partNum": "FTGpb557c01",
+        "colorId": "241",
+        "description": "",
+        "image": "https://img.bricklink.com/P/241/FTGpb557c01.jpg"
+      },
+      {
+        "partNum": "35216ac00pb035",
+        "colorId": "4",
+        "description": "",
+        "image": "https://img.bricklink.com/P/4/35216ac00pb035.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0866",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0866.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0866.png",
+    "description": "*NEW! Friends Liann - Lime, Coral and Medium Azure Tank Top, Orange Skirt, Medium Lavender Shoes, Bright Light Orange Helmet",
+    "name": "Liann",
+    "parts": [
+      {
+        "partNum": "2137pb01",
+        "colorId": "11",
+        "description": "Black Mini Doll, Hair Combo, Hair with Hat, Long with Molded Bright Light Orange Bicycle Helmet Pattern",
+        "image": "https://img.bricklink.com/P/11/2137pb01.jpg"
+      },
+      {
+        "partNum": "101186",
+        "colorId": "241",
+        "description": "Medium Tan Mini Doll, Head Friends with Black Eyebrows, Reddish Brown Eyes, Nougat Lips, and Dark Orange Lopsided Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/241/101186.jpg"
+      },
+      {
+        "partNum": "FTGpb557c01",
+        "colorId": "241",
+        "description": "",
+        "image": "https://img.bricklink.com/P/241/FTGpb557c01.jpg"
+      },
+      {
+        "partNum": "35216ac00pb035",
+        "colorId": "4",
+        "description": "",
+        "image": "https://img.bricklink.com/P/4/35216ac00pb035.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0881",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0881.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0881.png",
+    "description": "*NEW! Friends Michelle - Reddish Orange Shirt, Sand Green Trousers Bell-Bottoms, Medium Nougat Shoes",
+    "name": "Michelle",
+    "parts": [
+      {
+        "partNum": "38798",
+        "colorId": "11",
+        "description": "Black Minifigure, Hair Short and Bushy, Parted on Left",
+        "image": "https://img.bricklink.com/P/11/38798.jpg"
+      },
+      {
+        "partNum": "114842",
+        "colorId": "90",
+        "description": "",
+        "image": "https://img.bricklink.com/P/90/114842.jpg"
+      },
+      {
+        "partNum": "FTGpb566c01",
+        "colorId": "90",
+        "description": "",
+        "image": "https://img.bricklink.com/P/90/FTGpb566c01.jpg"
+      },
+      {
+        "partNum": "2125c00pb009",
+        "colorId": "48",
+        "description": "Sand Green Mini Doll Hips and Trousers Bell-Bottoms with Medium Nougat Shoes with Tan Soles Pattern - Thin Hinge",
+        "image": "https://img.bricklink.com/P/48/2125c00pb009.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0878",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0878.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0878.png",
+    "description": "*NEW! Friends Nova - Dark Turquoise Sleeveless Hoodie and Shorts Folded Hem, Black Boots",
+    "name": "Nova",
+    "parts": [
+      {
+        "partNum": "1826cc00pb009",
+        "colorId": "39",
+        "description": "Dark Turquoise Mini Doll Hips and Shorts Folded Hem with Molded Nougat Legs and Printed Black Boots with White Laces, Soles and Socks Pattern - Thin Hinge",
+        "image": "https://img.bricklink.com/P/39/1826cc00pb009.jpg"
+      },
+      {
+        "partNum": "101225",
+        "colorId": "28",
+        "description": "Nougat Mini Doll, Head Friends with Reddish Brown Eyebrows Raised, Olive Green Eyes, Dark Orange Lips, and Lopsided Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/28/101225.jpg"
+      },
+      {
+        "partNum": "FTGpb565c01",
+        "colorId": "28",
+        "description": "",
+        "image": "https://img.bricklink.com/P/28/FTGpb565c01.jpg"
+      },
+      {
+        "partNum": "2632",
+        "colorId": "2",
+        "description": "Tan Mini Doll, Hair Female Mid-Length, Wavy, Parted in Center",
+        "image": "https://img.bricklink.com/P/2/2632.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0880",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0880.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0880.png",
+    "description": "*NEW! Friends Nova - Dark Turquoise Sleeveless Hoodie, Dark Purple Shorts, Dark Turquoise Shoes",
+    "name": "Nova",
+    "parts": [
+      {
+        "partNum": "1826fc00pb005",
+        "colorId": "89",
+        "description": "Dark Purple Mini Doll Hips and Shorts with Molded Nougat Legs and Printed Dark Turquoise Shoes with White Soles Pattern - Thin Hinge",
+        "image": "https://img.bricklink.com/P/89/1826fc00pb005.jpg"
+      },
+      {
+        "partNum": "101225",
+        "colorId": "28",
+        "description": "Nougat Mini Doll, Head Friends with Reddish Brown Eyebrows Raised, Olive Green Eyes, Dark Orange Lips, and Lopsided Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/28/101225.jpg"
+      },
+      {
+        "partNum": "FTGpb565c01",
+        "colorId": "28",
+        "description": "",
+        "image": "https://img.bricklink.com/P/28/FTGpb565c01.jpg"
+      },
+      {
+        "partNum": "2632",
+        "colorId": "2",
+        "description": "Tan Mini Doll, Hair Female Mid-Length, Wavy, Parted in Center",
+        "image": "https://img.bricklink.com/P/2/2632.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0868",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0868.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0868.png",
+    "description": "*NEW! Friends Nova - Light Aqua and Lime Sweater, Dark Turquoise Shorts, Black Boots",
+    "name": "Nova",
+    "parts": [
+      {
+        "partNum": "1826cc00pb009",
+        "colorId": "39",
+        "description": "Dark Turquoise Mini Doll Hips and Shorts Folded Hem with Molded Nougat Legs and Printed Black Boots with White Laces, Soles and Socks Pattern - Thin Hinge",
+        "image": "https://img.bricklink.com/P/39/1826cc00pb009.jpg"
+      },
+      {
+        "partNum": "101225",
+        "colorId": "28",
+        "description": "Nougat Mini Doll, Head Friends with Reddish Brown Eyebrows Raised, Olive Green Eyes, Dark Orange Lips, and Lopsided Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/28/101225.jpg"
+      },
+      {
+        "partNum": "FTGpb558c01",
+        "colorId": "28",
+        "description": "",
+        "image": "https://img.bricklink.com/P/28/FTGpb558c01.jpg"
+      },
+      {
+        "partNum": "2632",
+        "colorId": "2",
+        "description": "Tan Mini Doll, Hair Female Mid-Length, Wavy, Parted in Center",
+        "image": "https://img.bricklink.com/P/2/2632.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0877",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0877.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0877.png",
+    "description": "*NEW! Friends Olly - Bright Light Blue Open Shirt, Dark Orange Shorts, Metallic Light Blue Shoes",
+    "name": "Olly",
+    "parts": [
+      {
+        "partNum": "2631",
+        "colorId": "103",
+        "description": "Bright Light Yellow Mini Doll, Hair Short Spiked, Swept Up in Front",
+        "image": "https://img.bricklink.com/P/103/2631.jpg"
+      },
+      {
+        "partNum": "1826fc00pb009",
+        "colorId": "68",
+        "description": "",
+        "image": "https://img.bricklink.com/P/68/1826fc00pb009.jpg"
+      },
+      {
+        "partNum": "101245",
+        "colorId": "241",
+        "description": "Medium Tan Mini Doll, Head Friends with Thick Reddish Brown Eyebrows, Dark Turquoise Eyes, Dark Purple Glasses, and Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/241/101245.jpg"
+      },
+      {
+        "partNum": "FTBpb157c01",
+        "colorId": "241",
+        "description": "",
+        "image": "https://img.bricklink.com/P/241/FTBpb157c01.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0882",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0882.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0882.png",
+    "description": "*NEW! Friends Paisley - Bright Light Yellow and Medium Lavender Tank Top, Bright Light Blue Trousers Bell-Bottoms, Orange Shoes",
+    "name": "Paisley",
+    "parts": [
+      {
+        "partNum": "2125c00pb004",
+        "colorId": "105",
+        "description": "",
+        "image": "https://img.bricklink.com/P/105/2125c00pb004.jpg"
+      },
+      {
+        "partNum": "2645",
+        "colorId": "59",
+        "description": "Dark Red Mini Doll, Hair Female Long, Parted on Side, Swept Back over Forehead, Hole on Top",
+        "image": "https://img.bricklink.com/P/59/2645.jpg"
+      },
+      {
+        "partNum": "101155",
+        "colorId": "90",
+        "description": "Light Nougat Mini Doll, Head Friends with Thick Dark Red Eyebrows, Medium Azure Eyes, Nougat Lips, and Smirk Pattern",
+        "image": "https://img.bricklink.com/P/90/101155.jpg"
+      },
+      {
+        "partNum": "FTGpb451c01",
+        "colorId": "90",
+        "description": "Light Nougat Torso Mini Doll Girl Bright Light Yellow Tank Top over Medium Lavender Sleeveless Shirt, Black and Coral Panels and Music Note Necklace Pattern, Light Nougat Arms with Hands",
+        "image": "https://img.bricklink.com/P/90/FTGpb451c01.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0867",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0867.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0867.png",
+    "description": "*NEW! Friends Paisley - Bright Pink Tank Top, Bright Light Blue Trousers Bell-Bottoms, Orange Shoes",
+    "name": "Paisley",
+    "parts": [
+      {
+        "partNum": "2125c00pb004",
+        "colorId": "105",
+        "description": "",
+        "image": "https://img.bricklink.com/P/105/2125c00pb004.jpg"
+      },
+      {
+        "partNum": "2645",
+        "colorId": "59",
+        "description": "Dark Red Mini Doll, Hair Female Long, Parted on Side, Swept Back over Forehead, Hole on Top",
+        "image": "https://img.bricklink.com/P/59/2645.jpg"
+      },
+      {
+        "partNum": "101155",
+        "colorId": "90",
+        "description": "Light Nougat Mini Doll, Head Friends with Thick Dark Red Eyebrows, Medium Azure Eyes, Nougat Lips, and Smirk Pattern",
+        "image": "https://img.bricklink.com/P/90/101155.jpg"
+      },
+      {
+        "partNum": "FTGpb508c01",
+        "colorId": "90",
+        "description": "Light Nougat Torso Mini Doll Girl Bright Pink Tank Top with Dark Azure Flowers and Dark Blue Necklace with Music Note over White T-Shirt Pattern, Light Nougat Arms with Hands with White Short Sleeves",
+        "image": "https://img.bricklink.com/P/90/FTGpb508c01.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0861",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0861.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0861.png",
+    "description": "*NEW! Friends Paisley - White Unicorn T-shirt, Bright Light Blue Trousers Bell-Bottoms, Orange Shoes",
+    "name": "Paisley",
+    "parts": [
+      {
+        "partNum": "2125c00pb004",
+        "colorId": "105",
+        "description": "",
+        "image": "https://img.bricklink.com/P/105/2125c00pb004.jpg"
+      },
+      {
+        "partNum": "2645",
+        "colorId": "59",
+        "description": "Dark Red Mini Doll, Hair Female Long, Parted on Side, Swept Back over Forehead, Hole on Top",
+        "image": "https://img.bricklink.com/P/59/2645.jpg"
+      },
+      {
+        "partNum": "101155",
+        "colorId": "90",
+        "description": "Light Nougat Mini Doll, Head Friends with Thick Dark Red Eyebrows, Medium Azure Eyes, Nougat Lips, and Smirk Pattern",
+        "image": "https://img.bricklink.com/P/90/101155.jpg"
+      },
+      {
+        "partNum": "FTGpb554c01",
+        "colorId": "90",
+        "description": "",
+        "image": "https://img.bricklink.com/P/90/FTGpb554c01.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0869",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0869.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0869.png",
+    "description": "*NEW! Friends Sonia - Bright Light Yellow 'PLAYLAND' Apron, Dark Pink T-Shirt, Medium Azure Shoes",
+    "name": "Sonia",
+    "parts": [
+      {
+        "partNum": "80911",
+        "colorId": "11",
+        "description": "Black Minifigure, Hair Bushy with Small Center Part",
+        "image": "https://img.bricklink.com/P/11/80911.jpg"
+      },
+      {
+        "partNum": "35216ac00pb036",
+        "colorId": "103",
+        "description": "",
+        "image": "https://img.bricklink.com/P/103/35216ac00pb036.jpg"
+      },
+      {
+        "partNum": "114837",
+        "colorId": "150",
+        "description": "",
+        "image": "https://img.bricklink.com/P/150/114837.jpg"
+      },
+      {
+        "partNum": "FTGpb559c01",
+        "colorId": "150",
+        "description": "",
+        "image": "https://img.bricklink.com/P/150/FTGpb559c01.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0876",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0876.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0876.png",
+    "description": "*NEW! Friends Zac - Dark Tuquoise Shirt with Motorcycle, Yellow Cropped Trousers, Dark Green Sandals",
+    "name": "Zac",
+    "parts": [
+      {
+        "partNum": "2646",
+        "colorId": "11",
+        "description": "Black Mini Doll, Hair Friends Short with Curls and Pompadour",
+        "image": "https://img.bricklink.com/P/11/2646.jpg"
+      },
+      {
+        "partNum": "101152",
+        "colorId": "88",
+        "description": "Reddish Brown Mini Doll, Head Friends with Black Thick Eyebrows, Dark Tan Eyes, and Lopsided Open Mouth Smile with Teeth Pattern",
+        "image": "https://img.bricklink.com/P/88/101152.jpg"
+      },
+      {
+        "partNum": "FTBpb156c01",
+        "colorId": "88",
+        "description": "",
+        "image": "https://img.bricklink.com/P/88/FTBpb156c01.jpg"
+      },
+      {
+        "partNum": "35216bc00pb014",
+        "colorId": "3",
+        "description": "",
+        "image": "https://img.bricklink.com/P/3/35216bc00pb014.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frnd0874",
+    "thumbnail": "https://img.bricklink.com/ItemImage/MT/0/frnd0874.t1.png",
+    "image": "https://img.bricklink.com/ItemImage/MN/0/frnd0874.png",
+    "description": "*NEW! Friends Zahra - Magenta Dress with Gold and Dark Blue Trim",
+    "name": "Zahra",
+    "parts": [
+      {
+        "partNum": "80911",
+        "colorId": "11",
+        "description": "Black Minifigure, Hair Bushy with Small Center Part",
+        "image": "https://img.bricklink.com/P/11/80911.jpg"
+      },
+      {
+        "partNum": "36187c00pb036",
+        "colorId": "71",
+        "description": "",
+        "image": "https://img.bricklink.com/P/71/36187c00pb036.jpg"
+      },
+      {
+        "partNum": "115454",
+        "colorId": "28",
+        "description": "",
+        "image": "https://img.bricklink.com/P/28/115454.jpg"
+      },
+      {
+        "partNum": "FTGpb563c01",
+        "colorId": "28",
+        "description": "",
+        "image": "https://img.bricklink.com/P/28/FTGpb563c01.jpg"
       }
     ]
   }
