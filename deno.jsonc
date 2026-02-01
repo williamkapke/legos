@@ -1,6 +1,14 @@
 {
   "tasks": {
-    "dev": "deno run --allow-net --allow-read --allow-write scripts/server.ts"
+    "dev": "deno run --allow-net --allow-read --allow-write scripts/server.ts",
+    "fetch:bricklink": "deno run -A scripts/fetch-bricklink.ts",
+    "fetch:minidolls": "deno run -A scripts/fetch-minidolls.ts",
+    "fetch:minidoll-images": "deno run -A scripts/fetch-minidoll-images.ts",
+    "fetch:images": "deno run -A scripts/fetch-images.ts",
+    "fetch:set-parts": "deno run -A scripts/fetch-set-parts.ts",
+    "fetch:colors": "deno run -A scripts/fetch-colors.ts",
+    "fetch:ca-store-terms": "deno run -A scripts/fetch-ca-store-terms.ts",
+    "generate:variations": "deno run scripts/generate-variations.js"
   },
   "imports": {
     "@std/async": "jsr:@std/async@^1.0.16"
