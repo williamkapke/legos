@@ -34,11 +34,26 @@
         top: 0;
         background: #fff;
         z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
       }
       .sidebar-header h1 {
         font-size: 18px;
         font-weight: 600;
         color: #333;
+      }
+      .sidebar-header button {
+        font-size: 12px;
+        padding: 6px 10px;
+        border: 1px solid #ccc;
+        background: #fafafa;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .sidebar-header button:hover {
+        background: #eee;
       }
       .set-list {
         list-style: none;
@@ -399,6 +414,7 @@
       <aside class="sidebar">
         <div class="sidebar-header">
           <h1>Set Inventory</h1>
+          <button id="export-btn" type="button">Export</button>
         </div>
         <ul class="set-list" id="set-list"></ul>
       </aside>
@@ -415,6 +431,7 @@
     <script>
       const STORAGE_KEY = "lego_inventory";
       let inventory = {};
+      let partsByKey = {}; // setId -> partKey -> part (for O(1) file-have lookup)
       let userData = {};
       let selectedSetId = null;
       let colors = {};
@@ -427,6 +444,37 @@
         } catch {
           userData = {};
         }
+      }
+
+      function buildPartIndex() {
+        partsByKey = {};
+        for (const setId of Object.keys(inventory)) {
+          partsByKey[setId] = {};
+          for (const part of inventory[setId].parts) {
+            partsByKey[setId][getPartKey(part)] = part;
+          }
+        }
+      }
+
+      function getFileHave(setId, partKey) {
+        return partsByKey[setId]?.[partKey]?.have || 0;
+      }
+
+      function pruneUserData() {
+        for (const setId of Object.keys(userData)) {
+          const overrides = userData[setId]?.parts;
+          if (!overrides) {
+            delete userData[setId];
+            continue;
+          }
+          for (const partKey of Object.keys(overrides)) {
+            if (overrides[partKey].have === getFileHave(setId, partKey)) {
+              delete overrides[partKey];
+            }
+          }
+          if (Object.keys(overrides).length === 0) delete userData[setId];
+        }
+        saveUserData();
       }
 
       function saveUserData() {
@@ -449,17 +497,24 @@
       }
 
       function getHaveCount(setId, partKey) {
-        return userData[setId]?.parts?.[partKey]?.have || 0;
+        const override = userData[setId]?.parts?.[partKey];
+        if (override) return override.have;
+        return getFileHave(setId, partKey);
       }
 
       function setHaveCount(setId, partKey, count) {
-        if (!userData[setId]) {
-          userData[setId] = { parts: {} };
+        if (count === getFileHave(setId, partKey)) {
+          // Matches the file — clear any override so localStorage stays a pure diff
+          const overrides = userData[setId]?.parts;
+          if (overrides && partKey in overrides) {
+            delete overrides[partKey];
+            if (Object.keys(overrides).length === 0) delete userData[setId];
+          }
+        } else {
+          if (!userData[setId]) userData[setId] = { parts: {} };
+          if (!userData[setId].parts) userData[setId].parts = {};
+          userData[setId].parts[partKey] = { have: count };
         }
-        if (!userData[setId].parts) {
-          userData[setId].parts = {};
-        }
-        userData[setId].parts[partKey] = { have: count };
         saveUserData();
       }
 
@@ -473,16 +528,41 @@
         inventory = await inventoryRes.json();
         colors = await colorsRes.json();
 
+        buildPartIndex();
+        pruneUserData();
+
         renderSetList();
 
-        // Restore last selected or pick first
-        const lastSet = localStorage.getItem("lastInventorySet");
+        document.getElementById("export-btn").addEventListener("click", exportUserData);
+
+        // Restore from ?set= query param or pick first
+        const urlSet = new URLSearchParams(location.search).get("set");
         const setIds = Object.keys(inventory);
-        if (lastSet && inventory[lastSet]) {
-          selectSet(lastSet);
+        if (urlSet && inventory[urlSet]) {
+          selectSet(urlSet);
         } else if (setIds.length > 0) {
           selectSet(setIds[0]);
         }
+      }
+
+      function exportUserData() {
+        const merged = structuredClone(inventory);
+        for (const setId of Object.keys(merged)) {
+          for (const part of merged[setId].parts) {
+            const have = getHaveCount(setId, getPartKey(part));
+            if (have > 0) part.have = have;
+            else delete part.have;
+          }
+        }
+        const blob = new Blob([JSON.stringify(merged, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "set-inventory.json";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
       }
 
       function renderSetList() {
@@ -511,7 +591,9 @@
 
       function selectSet(setId) {
         selectedSetId = setId;
-        localStorage.setItem("lastInventorySet", setId);
+        const params = new URLSearchParams(location.search);
+        params.set("set", setId);
+        history.replaceState(null, "", `${location.pathname}?${params}`);
 
         // Clear any pending fade-outs
         pendingFadeOuts.forEach((timeoutId) => clearTimeout(timeoutId));
